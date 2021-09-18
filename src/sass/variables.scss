@@ -6,8 +6,8 @@ $headline-bg: #3a2f33;
 $text-grey: rgb(199, 199, 199);
 $linear-small: 200ms linear;
 $rating-color: #fcd46b;
-$bar-width:400px;
-$main-sticky: 300ms cubic-bezier(.36,.12,.46,1.92);
+$bar-width: 350px;
+$main-sticky: 300ms cubic-bezier(0.36, 0.12, 0.46, 1.92);
 
 %roboto-slab {
   font-family: "Roboto Slab", serif;

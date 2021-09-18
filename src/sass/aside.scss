@@ -3,6 +3,8 @@
   background-color: $aside-bg;
   max-height: 100vh;
   transition: $linear-small;
+  flex-grow: 0;
+  flex-shrink: 0;
   @media screen and (max-width: 1200px) {
     position: absolute;
     top: 0;

@@ -1,0 +1,112 @@
+.bar {
+  width: $bar-width;
+  background-color: $aside-bg;
+  max-height: 100vh;
+  transition: $linear-small;
+  @media screen and (max-width: 1200px) {
+    position: absolute;
+    top: 0;
+    left: -500px;
+    z-index: 5;
+  }
+  &--open{
+    left: 0;
+  }
+}
+.bar__headline {
+  background-color: $headline-bg;
+  border: 2px solid $text-grey;
+  width: 100%;
+  color: $headline-white;
+  padding: 5px;
+  text-align: center;
+  font-size: 18px;
+  @extend %roboto-slab;
+  font-weight: 500;
+}
+.bar__controls-headline {
+  // background-color: #41363a;
+}
+.bar__movies-headline {
+  // background-color: #41363a;
+}
+.best-movies__headline {
+  @extend %roboto-slab;
+  color: $headline-white;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.best-movies__img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.best-movies__img-wrapper {
+  flex-shrink: 0;
+  height: 80px;
+  width: 55px;
+  margin-right: 10px;
+}
+.best-movies__item {
+  cursor: pointer;
+  padding: 7px;
+  display: flex;
+  transition: $linear-small;
+  &:hover {
+    background-color: $headline-bg;
+  }
+}
+.best-movies__list {
+  overflow-y: scroll;
+  height: calc(100vh - 218px);
+}
+.best-movies__rating {
+  background-color: $rating-color;
+  width: 36px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 2px 0;
+  @extend %roboto-slab;
+}
+.best-movies__text-wrapper {
+  align-self: center;
+}
+.controls__item {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px;
+}
+.controls__link {
+  @extend %roboto-slab;
+  color: $text-grey;
+  font-size: 16px;
+  transition: $linear-small;
+  &:hover {
+    color: $headline-white;
+    & + span {
+      color: $headline-white;
+    }
+  }
+}
+.controls__list {
+  padding: 7px 0;
+}
+.rating__text {
+}
+.controls__counter {
+  transition: $linear-small;
+  padding-top: 2px;
+  text-align: center;
+  border-radius: 5px;
+  display: block;
+  @extend %roboto-slab;
+  color: $text-grey;
+  font-size: 12px;
+  background-color: $headline-bg;
+  min-width: 25px;
+}
+.ff {
+  background-color: #999;
+  height: 100px;
+  width: 100px;
+}

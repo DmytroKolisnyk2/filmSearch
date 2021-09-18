@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800&display=swap");
+
+$headline-white: rgb(254, 255, 241);
+$aside-bg: #4c4145;
+$headline-bg: #3a2f33;
+$text-grey: rgb(199, 199, 199);
+$linear-small: 200ms linear;
+$rating-color: #fcd46b;
+$bar-width:400px;
+$main-sticky: 300ms cubic-bezier(.36,.12,.46,1.92);
+
+%roboto-slab {
+  font-family: "Roboto Slab", serif;
+}

@@ -1,0 +1,95 @@
+.movie-info {
+  padding: 0 15px 15px;
+}
+.background__genre {
+  font-weight: 800;
+  font-size: 16px;
+  margin-bottom: 20px;
+  & span {
+    margin-left: 4px;
+    font-weight: 400;
+  }
+}
+.background__headline {
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.background__img {
+  width: 100%;
+  object-fit: cover;
+}
+.background__img-wrapper {
+  width: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 35px;
+  -webkit-box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
+  box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
+}
+.background__tagline {
+  margin-bottom: 10px;
+  font-weight: 800;
+  font-size: 16px;
+  & span {
+    margin-left: 4px;
+    font-weight: 400;
+  }
+}
+.background__text-wrapper {
+}
+.background__year {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+.info__background {
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 100%),
+    url(https://www.megacritic.ru/media/reviews/photos/thumbnail/640x640s/2e/0e/bc/843650-22-1553011940.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 30px;
+}
+
+.info__rating {
+}
+.background__content-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding-left: 50px;
+  padding: 70px 45px;
+}
+.background__text {
+  color: $headline-white;
+  @extend %roboto-slab;
+}
+.info__home-page-link {
+  color: #666;
+  // text-decoration: underline;
+  transition: $linear-small;
+  &:hover {
+    color: $aside-bg;
+  }
+}
+.info__text {
+  @extend %roboto-slab;
+  font-size: 19px;
+  margin-bottom: 20px;
+  color: #333;
+  & span {
+    font-size: 21px;
+    font-weight: 600;
+    margin-right: 3px;
+  }
+}
+.info__trailer {
+  width: 100%;
+}

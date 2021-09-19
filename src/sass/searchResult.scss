@@ -1,7 +1,5 @@
-// display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-//   grid-gap: 20px;
 .card {
+  cursor: pointer;
   position: relative;
   border-radius: 10px;
   overflow: hidden;
@@ -12,12 +10,48 @@
     transform: scale(1);
   }
 }
+
 .card-menu__btn {
+  @extend %roboto-slab;
   background-color: $rating-color;
   height: 40px;
   width: 40px;
   font-size: 25px;
   border-radius: 5px;
+  color: $aside-bg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: $linear-small;
+  &:hover {
+    background-color: $aside-bg;
+  }
+  &:nth-child(4) {
+    &:hover {
+      color: rgb(86, 241, 255);
+    }
+  }
+  &:nth-child(3) {
+    &:hover {
+      color: tomato;
+    }
+  }
+  &:nth-child(2) {
+    &:hover {
+      color: whitesmoke;
+    }
+  }
+  &:nth-child(1) {
+    cursor: text;
+    &:hover {
+      background-color: $rating-color;
+    }
+  }
+}
+.card-menu__rating {
+  font-size: 20px;
+  font-weight: 700;
+  width: 55px;
 }
 .card__img {
   width: 100%;
@@ -33,7 +67,7 @@
   justify-content: space-between;
   transform: scale(0);
   align-items: center;
-  transition: $main-sticky;
+  transition: $linear-small;
 }
 .search-result {
   // overflow-y: scroll;

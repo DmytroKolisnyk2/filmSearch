@@ -7,6 +7,7 @@
   transition: $linear-small;
 }
 .header {
+  position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -68,9 +69,23 @@
   transition: $linear-small;
   @extend %roboto-slab;
   &:focus {
+    & + .header__icon {
+      color: $aside-bg;
+      cursor: pointer;
+    }
     border-color: $aside-bg;
   }
   @media screen and (min-width: 1200px) {
     width: calc(100% - 20px);
+  }
+}
+.header__icon {
+  font-size: 30px;
+  position: absolute;
+  color: $text-grey;
+  right: 82px;
+  transition: $linear-small;
+  @media screen and (min-width: 1200px) {
+    right: 20px;
   }
 }

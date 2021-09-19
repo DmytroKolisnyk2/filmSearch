@@ -11,7 +11,7 @@
     left: -500px;
     z-index: 5;
   }
-  &--open{
+  &--open {
     left: 0;
   }
 }
@@ -83,6 +83,13 @@
   color: $text-grey;
   font-size: 16px;
   transition: $linear-small;
+  align-items: center;
+  display: flex;
+  & i{
+    // line-height: 0;
+    margin-right: 7px;
+    font-size: 25px;
+  }
   &:hover {
     color: $headline-white;
     & + span {
@@ -97,15 +104,16 @@
 }
 .controls__counter {
   transition: $linear-small;
-  padding-top: 2px;
+  padding-top: 4px;
+  height: 22px;
   text-align: center;
   border-radius: 5px;
   display: block;
   @extend %roboto-slab;
   color: $text-grey;
-  font-size: 12px;
+  font-size: 13px;
   background-color: $headline-bg;
-  min-width: 25px;
+  min-width: 29px;
 }
 .ff {
   background-color: #999;

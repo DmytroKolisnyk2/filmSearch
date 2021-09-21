@@ -33,7 +33,6 @@ export const searchApp = {
 
   updatePhotos() {
     if (this.page === 1 || this.blocked) return;
-    console.log('run')
     observeRef.classList.add('observe--hidden');
     this.blocked = true;
     this.last = galleryRef.lastElementChild;
@@ -72,8 +71,6 @@ export const renderPlayingNow = () => {
 };
 export const renderPopular = () => {
   popularRequest().then(({ data }) => {
-    console.log(data);
-
     asideListRef.innerHTML = asideListTmpl(data);
     if (data.results.length === 0) {
       error({ text: 'Films in your region not found', delay: 700 });

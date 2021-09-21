@@ -1,12 +1,14 @@
 import cardTmpl from '../templates/searchCard.hbs';
+import asideListTmpl from '../templates/asideList.hbs';
 import { error, info } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
-import { queryRequest, popularRequest } from './searchFilm';
+import { queryRequest, popularRequest, playingNowRequest } from './searchFilm';
 
 const inputRef = document.querySelector('.header__search');
 const galleryRef = document.querySelector('.search-result__card-container');
 const observeRef = document.querySelector('#observe');
+const asideListRef = document.querySelector('.best-movies__list');
 
 export const searchApp = {
   page: 1,
@@ -57,10 +59,8 @@ export const searchApp = {
     this.page++
   }
 }
-export const renderPopular = () => {
-
-  popularRequest().then(({ data }) => {
-    console.log(data);
+export const renderPlayingNow = () => {
+  playingNowRequest().then(({ data }) => {
     galleryRef.innerHTML = cardTmpl(data);
     if (data.results.length === 0) {
       error({ text: 'Popular films not found', delay: 700 });
@@ -69,4 +69,15 @@ export const renderPopular = () => {
   })
     .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
 
+};
+export const renderPopular = () => {
+  popularRequest().then(({ data }) => {
+    console.log(data);
+
+    asideListRef.innerHTML = asideListTmpl(data);
+    if (data.results.length === 0) {
+      error({ text: 'Films in your region not found', delay: 700 });
+      return;
+    };
+  })
 };

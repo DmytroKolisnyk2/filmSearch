@@ -11,10 +11,17 @@
 <body>
   <include src="./partials/aside.html"></include>
 
-  <main>
+  <main class="main">
     <include src="./partials/header.html"></include>
     <!-- <include src="./partials/movie.html"></include> -->
-    <include src="./partials/searchResult.html"></include>
+    <!-- <include src="./partials/searchResult.html"></include> -->
+    <section class="search-result">
+      <div class="search-result__card-container"></div>
+      <div class="observe observe--hidden" id="observe">
+        <img src="./images/loader.gif" alt="loader">
+      </div>
+    </section>
+
   </main>
 
 

@@ -6,7 +6,7 @@
   "homepage": "https://goitacademy.github.io/parcel-project-template",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /parcel-project-template/"
+    "build": "parcel build src/*.html --public-url ./"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "sass": "^1.32.8"
   },
   "dependencies": {
+    "basiclightbox": "^5.0.4",
     "material-design-icons": "^3.0.1"
   }
 }

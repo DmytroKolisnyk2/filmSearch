@@ -1,12 +1,14 @@
 .bar {
   width: $bar-width;
   background-color: $aside-bg;
-  max-height: 100vh;
+  height: 100vh;
   transition: $linear-small;
   flex-grow: 0;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
   @media screen and (max-width: 1200px) {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: -500px;
     z-index: 5;
@@ -60,7 +62,8 @@
 }
 .best-movies__list {
   overflow-y: scroll;
-  height: calc(100vh - 218px);
+  flex-grow: 1;
+  // height: calc(100vh - 218px);
 }
 .best-movies__rating {
   background-color: $rating-color;
@@ -75,8 +78,21 @@
 }
 .controls__item {
   display: flex;
+  cursor: pointer;
   justify-content: space-between;
   padding: 7px;
+  transition: $linear-small;
+  &:hover {
+    background-color: $headline-bg;
+    & .controls__link {
+      background-color: $headline-bg;
+      color: $headline-white;
+      & + span {
+        color: $headline-bg;
+        background-color: $rating-color;
+      }
+    }
+  }
 }
 .controls__link {
   @extend %roboto-slab;
@@ -85,17 +101,18 @@
   transition: $linear-small;
   align-items: center;
   display: flex;
-  & i{
+  & i {
     // line-height: 0;
     margin-right: 7px;
     font-size: 25px;
   }
-  &:hover {
-    color: $headline-white;
-    & + span {
-      color: $headline-white;
-    }
-  }
+  // &:hover {
+  //   background-color: $headline-bg;
+  //   color: $headline-white;
+  //   & + span {
+  //     color: $headline-white;
+  //   }
+  // }
 }
 .controls__list {
   padding: 7px 0;

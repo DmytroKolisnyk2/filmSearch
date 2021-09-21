@@ -1,5 +1,5 @@
-@import "./reset";
 @import "./variables";
+@import "./reset";
 @import "./header";
 @import "./aside";
 @import "./searchResult";
@@ -9,6 +9,10 @@ body {
   background-color: rgb(238, 238, 238);
   display: flex;
 }
-main {
+.main {
+  overflow-y: scroll;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
 }

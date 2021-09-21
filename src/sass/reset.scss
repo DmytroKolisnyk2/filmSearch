@@ -89,3 +89,13 @@ h6 {
 [hidden] {
    display: none;
 }
+
+::-webkit-scrollbar-thumb {
+   background-color: #878385;
+   border-radius: 4px;
+}
+::-webkit-scrollbar {
+   height: 3px;
+   width: 7px;
+   background-color: transparent;
+}

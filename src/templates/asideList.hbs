@@ -1,0 +1,18 @@
+{{#each results}}
+<li class="best-movies__item">
+  <div class="best-movies__img-wrapper">
+  {{#if this.poster_path}}
+  <img width="350" height="400" class="card__img" src="https://image.tmdb.org/t/p/w300{{this.poster_path}}" />
+  {{/if}}
+  {{#unless this.poster_path}}
+  <img width="350" height="400" alt="no-poster" class="card__img" src="./images/no-poster.png" />
+  {{/unless}}
+  </div>
+  <div class="best-movies__text-wrapper">
+    <h3 class="best-movies__headline">{{this.title}}</h3>
+    <div class="best-movies__rating">
+      <span class="rating__text">{{this.vote_average}}</span>
+    </div>
+  </div>
+</li>
+{{/each}}

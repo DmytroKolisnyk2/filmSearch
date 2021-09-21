@@ -1,13 +1,18 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://api.themoviedb.org';
-const key = '973f836f86ee5af25313d0a8c5bc0a33';
+axios.defaults.baseURL = 'https://api.themoviedb.org/3';
+axios.defaults.params = {
+  api_key: '973f836f86ee5af25313d0a8c5bc0a33'
+}
 
 export const queryRequest = (query, page) => {
-  return axios.get(`3/search/movie?api_key=${key}&query=${query}&page=${page}`);
+  return axios.get(`/search/movie?query=${query}&page=${page}`);
 };
 
-// https://api.themoviedb.org/3/trending/movie/week?api_key=973f836f86ee5af25313d0a8c5bc0a33
 export const popularRequest = () => {
-  return axios.get(`3/trending/movie/week?api_key=${key}`);
+  return axios.get(`/movie/top_rated`);
+};
+
+export const playingNowRequest = () => {
+  return axios.get(`/movie/now_playing`);
 };

@@ -10,6 +10,7 @@
     {{/unless}}
   </div>
   <div class="card__menu-wrapper">
+    <div class="card__lang">{{this.original_language}}</div>
     <div class="card__menu">
       <span type="button" class="card-menu__btn card-menu__rating">{{this.vote_average}}</span>
       <button type="button" class="card-menu__btn">
@@ -22,6 +23,7 @@
         <i class="material-icons">info</i>
       </button>
     </div>
+    <h2 class="card__headline">{{this.title}}</h2>
   </div>
 </div>
 {{/each}}

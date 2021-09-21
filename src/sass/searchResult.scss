@@ -4,6 +4,7 @@
   border-radius: 10px;
   overflow: hidden;
   &:hover .card__menu-wrapper {
+    opacity: 1;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);
   }
   &:hover .card__menu {
@@ -67,7 +68,7 @@
   width: 190px;
   display: flex;
   justify-content: space-between;
-  transform: scale(0);
+  transform: scale(0.5);
   align-items: center;
   transition: $linear-small;
 }
@@ -77,6 +78,7 @@
   // overflow-y: scroll;
   position: relative;
   padding: 0 12px 60px;
+  flex-grow: 1;
 }
 .search-result__card-container {
   position: relative;
@@ -85,6 +87,7 @@
   grid-gap: 20px;
 }
 .card__menu-wrapper {
+  opacity: 0;
   transition: $linear-small;
   position: absolute;
   width: 100%;
@@ -112,7 +115,39 @@
     transform: scale(0);
   }
 }
-.main{
+
+.card__headline {
+  position: absolute;
+  text-align: center;
+  padding: 10px 25px;
+  @extend %roboto-slab;
+  font-size: 28px;
+  color: $headline-white;
+  font-weight: 600;
+  background-color: $headline-bg;
+  border-radius: 10px;
+  max-width: 90%;
+  bottom: 40px;
+  cursor: text;
+
+}
+.card__lang {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-align: center;
+  @extend %roboto-slab;
+  font-size: 28px;
+  color: $aside-bg;
+  font-weight: 600;
+  background-color: $rating-color;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: text;
+}
+.main {
   overflow-y: scroll;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

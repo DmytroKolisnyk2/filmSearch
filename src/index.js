@@ -3,6 +3,17 @@ import 'material-design-icons/iconfont/material-icons.css';
 import { openBar, closeOverlayBar } from './js/openBar';
 import { searchApp, renderPopular, renderPlayingNow } from './js/searchApp';
 import debounce from 'lodash.debounce';
+import { changeLikes,changeWatchLaterList} from './js/addToList';
+
+localStorage.setItem('like-list', localStorage.getItem('like-list') || JSON.stringify([]));
+localStorage.setItem('watch-later', localStorage.getItem('watch-later') || JSON.stringify([]));
+
+const galleryRef = document.querySelector('.search-result__card-container');
+galleryRef.addEventListener('click', changeLikes);
+galleryRef.addEventListener('click', changeWatchLaterList);
+
+document.querySelector('.controls__counter--watch-later').innerHTML = JSON.parse(localStorage.getItem('like-list')).length;
+document.querySelector('.controls__counter--favorite').innerHTML = JSON.parse(localStorage.getItem('like-list')).length;
 
 const burgerRef = document.querySelector('.header__burger');
 burgerRef.addEventListener('click', openBar);

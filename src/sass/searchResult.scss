@@ -24,8 +24,16 @@
   justify-content: center;
   align-items: center;
   transition: $linear-small;
-  &:hover {
+  &--liked {
+    color: tomato;
     background-color: $aside-bg;
+  }
+  &--later {
+    color: whitesmoke;
+    background-color: $aside-bg;
+  }
+  &:hover {
+    // background-color: $aside-bg;
   }
   &:nth-child(4) {
     &:hover {
@@ -129,7 +137,7 @@
   max-width: 90%;
   bottom: 40px;
   cursor: text;
--webkit-box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
+  -webkit-box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
   -moz-box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
   box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
 }

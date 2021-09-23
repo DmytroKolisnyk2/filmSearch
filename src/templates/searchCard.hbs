@@ -1,6 +1,5 @@
-
 {{#each results}}
-<div class="card">
+<div data-id="{{this.id}}" class="card">
   <div class="card__img-wrapper">
     {{#if this.poster_path}}
     <img width="350" height="400" class="card__img" src="https://image.tmdb.org/t/p/w500{{this.poster_path}}" />
@@ -11,12 +10,14 @@
   </div>
   <div class="card__menu-wrapper">
     <div class="card__lang">{{this.original_language}}</div>
-    <div class="card__menu">
+    <div data-id="{{this.id}}" class="card__menu">
       <span type="button" class="card-menu__btn card-menu__rating">{{this.vote_average}}</span>
-      <button type="button" class="card-menu__btn">
+      <button data-action="watch-later" type="button"
+        class="card-menu__btn card-menu__btn--watch-later {{#if this.watchLater}}card-menu__btn--later{{/if}}">
         <i class="material-icons">playlist_add</i>
       </button>
-      <button type="button" class="card-menu__btn">
+      <button data-action="like" type="button"
+        class="card-menu__btn card-menu__btn--like {{#if this.liked}}card-menu__btn--liked{{/if}}">
         <i class="material-icons">favorite</i>
       </button>
       <button type="button" class="card-menu__btn">

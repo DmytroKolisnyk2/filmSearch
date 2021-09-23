@@ -17,32 +17,40 @@ export const searchApp = {
     if (inputRef.value.length === 0) return;
     this.page = 1;
     this.blocked = true;
-    observeRef.classList.add('observe--hidden');
+    galleryRef.innerHTML = '';
+    observeRef.classList.remove('observe--hidden')
     queryRequest(inputRef.value, this.page)
       .then(({ data }) => {
-        console.log(data);
         galleryRef.innerHTML = cardTmpl(data);
         if (data.total_pages === 1) {
           return;
         };
         if (data.results.length === 0) {
+          setTimeout(() => observeRef.classList.add('observe--hidden'), 200);
           error({ text: 'Query not found', delay: 700 });
           return;
         };
         this.restartObserver();
       })
-      .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
+      .catch(() => {
+        setTimeout(() => observeRef.classList.add('observe--hidden'), 200);
+        error({
+          text: 'Oops something went wrong', delay: 1000
+        })
+      });
   },
 
   updatePhotos() {
     if (this.page === 1 || this.blocked) return;
-    observeRef.classList.add('observe--hidden');
+    // observeRef.classList.add('observe--hidden');
+    console.log('loading...')
     this.blocked = true;
     this.last = galleryRef.lastElementChild;
     queryRequest(inputRef.value, this.page)
       .then(({ data }) => {
         if (data.results.length === 0) {
           info({ text: "That's the end", delay: 900 });
+          setTimeout(() => observeRef.classList.add('observe--hidden'), 200);
           return;
         }
         galleryRef.insertAdjacentHTML('beforeend', cardTmpl(data));
@@ -56,8 +64,10 @@ export const searchApp = {
   },
 
   restartObserver() {
-    observeRef.classList.remove('observe--hidden');
-    setTimeout(() => this.blocked = false, 500);
+    setTimeout(() => {
+      this.blocked = false;
+      observeRef.classList.remove('observe--hidden');
+    }, 500);
     this.page++
   }
 }

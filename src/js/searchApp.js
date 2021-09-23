@@ -22,6 +22,9 @@ export const searchApp = {
       .then(({ data }) => {
         console.log(data);
         galleryRef.innerHTML = cardTmpl(data);
+        if (data.total_pages === 1) {
+          return;
+        };
         if (data.results.length === 0) {
           error({ text: 'Query not found', delay: 700 });
           return;

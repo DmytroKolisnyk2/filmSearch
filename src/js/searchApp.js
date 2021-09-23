@@ -18,22 +18,24 @@ export const searchApp = {
     this.page = 1;
     this.blocked = true;
     galleryRef.innerHTML = '';
-    observeRef.classList.remove('observe--hidden')
+    // observeRef.style.display = 'block';
+    observeRef.classList.remove('observe--hidden');
     queryRequest(inputRef.value, this.page)
       .then(({ data }) => {
         galleryRef.innerHTML = cardTmpl(data);
         if (data.total_pages === 1) {
+          this.hideObserver();
           return;
         };
         if (data.results.length === 0) {
-          setTimeout(() => observeRef.classList.add('observe--hidden'), 200);
+          this.hideObserver();
           error({ text: 'Query not found', delay: 700 });
           return;
         };
-        this.restartObserver();
+        setTimeout(() => this.restartObserver(), 500);
       })
       .catch(() => {
-        setTimeout(() => observeRef.classList.add('observe--hidden'), 200);
+        this.hideObserver();
         error({
           text: 'Oops something went wrong', delay: 1000
         })
@@ -50,7 +52,7 @@ export const searchApp = {
       .then(({ data }) => {
         if (data.results.length === 0) {
           info({ text: "That's the end", delay: 900 });
-          setTimeout(() => observeRef.classList.add('observe--hidden'), 200);
+          this.hideObserver();
           return;
         }
         galleryRef.insertAdjacentHTML('beforeend', cardTmpl(data));
@@ -60,15 +62,28 @@ export const searchApp = {
         });
         this.restartObserver();
       })
-      .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
+      .catch(() => {
+        this.hideObserver();
+        error({
+          text: 'Oops something went wrong', delay: 100
+        })
+      });
   },
 
   restartObserver() {
     setTimeout(() => {
+      // observeRef.style.display = 'block';
       this.blocked = false;
       observeRef.classList.remove('observe--hidden');
+      this.page++;
     }, 500);
-    this.page++
+  },
+  hideObserver() {
+    setTimeout(() => {
+      observeRef.classList.add('observe--hidden');
+      // observeRef.style.display = 'none'
+    }, 200);
+
   }
 }
 export const renderPlayingNow = () => {

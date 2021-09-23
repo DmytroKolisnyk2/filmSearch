@@ -15,6 +15,11 @@
   }
   &--open {
     left: 0;
+    & + .aside__overlay {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 }
 .bar__headline {
@@ -136,4 +141,17 @@
   background-color: #999;
   height: 100px;
   width: 100px;
+}
+.aside__overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  display: none;
+  z-index: 3;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: $linear-small;
+  opacity: 0;
+  transform: scale(0);
 }

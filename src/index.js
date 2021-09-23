@@ -1,7 +1,7 @@
 import './sass/main.scss';
 import 'material-design-icons/iconfont/material-icons.css';
-import { openBar } from './js/openBar';
-import { searchApp, renderPopular,renderPlayingNow } from './js/searchApp';
+import { openBar, closeOverlayBar } from './js/openBar';
+import { searchApp, renderPopular, renderPlayingNow } from './js/searchApp';
 import debounce from 'lodash.debounce';
 
 const burgerRef = document.querySelector('.header__burger');
@@ -13,6 +13,8 @@ inputRef.addEventListener('input', debounce(() => searchApp.searchPhoto.apply(se
 const observeRef = document.querySelector('#observe');
 const observer = new IntersectionObserver(searchApp.updatePhotos.bind(searchApp, observeRef));
 observer.observe(observeRef);
+
+document.querySelector('.aside__overlay').addEventListener('click', closeOverlayBar);
 
 renderPopular();
 renderPlayingNow();

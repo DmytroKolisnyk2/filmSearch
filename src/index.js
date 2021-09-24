@@ -3,7 +3,7 @@ import 'material-design-icons/iconfont/material-icons.css';
 import { openBar, closeOverlayBar } from './js/openBar';
 import { searchApp, renderPopular, renderPlayingNow } from './js/searchApp';
 import debounce from 'lodash.debounce';
-import { changeLikes,changeWatchLaterList} from './js/addToList';
+import { changeLikes, changeWatchLaterList } from './js/addToList';
 
 localStorage.setItem('like-list', localStorage.getItem('like-list') || JSON.stringify([]));
 localStorage.setItem('watch-later', localStorage.getItem('watch-later') || JSON.stringify([]));

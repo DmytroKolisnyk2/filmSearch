@@ -4,7 +4,10 @@ import { error, info } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 import { queryRequest, popularRequest, playingNowRequest } from './searchFilm';
-// import { addToLiked } from './js/addToList';
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/themes/light-border.css';
+import 'tippy.js/animations/shift-away.css';
 
 const inputRef = document.querySelector('.header__search');
 const galleryRef = document.querySelector('.search-result__card-container');
@@ -121,6 +124,11 @@ const addActiveBtn = (data) => {
   results.map(element => {
     element.liked = likeList.includes(JSON.stringify(element.id));
     element.watchLater = watchLaterList.includes(JSON.stringify(element.id));
-  })
+  });
+  tippy('[data-tippy-content]',{
+    placement: 'bottom',
+    theme: 'light-border',
+    animation: 'shift-away'
+});
   return data
 };

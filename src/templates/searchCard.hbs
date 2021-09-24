@@ -9,18 +9,21 @@
     {{/unless}}
   </div>
   <div class="card__menu-wrapper">
-    <div class="card__lang">{{this.original_language}}</div>
+    <div data-tippy-content="Country" class="card__lang">{{this.original_language}}</div>
     <div data-id="{{this.id}}" class="card__menu">
-      <span type="button" class="card-menu__btn card-menu__rating">{{this.vote_average}}</span>
-      <button data-action="watch-later" type="button"
+      <span data-tippy-content="Rating" type="button"
+        class="card-menu__btn card-menu__rating">{{this.vote_average}}</span>
+      <button data-tippy-content="Add to watch later" data-action="watch-later" type="button"
         class="card-menu__btn card-menu__btn--watch-later {{#if this.watchLater}}card-menu__btn--later{{/if}}">
-        <i class="material-icons">playlist_add</i>
+        <i class="material-icons material-icons--1">playlist_add</i>
+        <i class="material-icons material-icons--2">playlist_add_check</i>
       </button>
-      <button data-action="like" type="button"
+      <button data-tippy-content="Like" data-action="like" type="button"
         class="card-menu__btn card-menu__btn--like {{#if this.liked}}card-menu__btn--liked{{/if}}">
-        <i class="material-icons">favorite</i>
+        <i class="material-icons material-icons--1">favorite_border</i>
+        <i class="material-icons material-icons--2">favorite</i>
       </button>
-      <button type="button" class="card-menu__btn">
+      <button data-tippy-content="Info" type="button" class="card-menu__btn">
         <i class="material-icons">info</i>
       </button>
     </div>

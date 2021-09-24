@@ -24,13 +24,28 @@
   justify-content: center;
   align-items: center;
   transition: $linear-small;
+  & .material-icons--2 {
+    display: none;
+  }
   &--liked {
     color: tomato;
     background-color: $aside-bg;
+    & .material-icons--1 {
+      display: none;
+    }
+    & .material-icons--2 {
+      display: block;
+    }
   }
   &--later {
     color: whitesmoke;
     background-color: $aside-bg;
+    & .material-icons--1 {
+      display: none;
+    }
+    & .material-icons--2 {
+      display: block;
+    }
   }
   &:hover {
     // background-color: $aside-bg;

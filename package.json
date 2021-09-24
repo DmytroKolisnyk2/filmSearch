@@ -27,7 +27,8 @@
     "parcel-plugin-static-files-copy": "^2.6.0",
     "pnotify": "^5.2.0",
     "posthtml-include": "^1.6.2",
-    "sass": "^1.32.8"
+    "sass": "^1.32.8",
+    "tippy.js": "^6.3.1"
   },
   "dependencies": {
     "basiclightbox": "^5.0.4",

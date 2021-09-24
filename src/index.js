@@ -29,3 +29,6 @@ document.querySelector('.aside__overlay').addEventListener('click', closeOverlay
 
 renderPopular();
 renderPlayingNow();
+import Darkmode from 'darkmode-js';
+
+new Darkmode().showWidget();

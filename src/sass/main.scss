@@ -16,3 +16,7 @@ body {
   flex-direction: column;
   flex-grow: 1;
 }
+.darkmode-toggle--white,
+.darkmode-toggle {
+  z-index: 10;
+}

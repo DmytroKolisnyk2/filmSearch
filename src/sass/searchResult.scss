@@ -38,7 +38,7 @@
     }
   }
   &--later {
-    color: whitesmoke;
+    color: $headline-white;
     background-color: $aside-bg;
     & .material-icons--1 {
       display: none;
@@ -62,7 +62,7 @@
   }
   &:nth-child(2) {
     &:hover {
-      color: whitesmoke;
+      color: $headline-white;
     }
   }
   &:nth-child(1) {

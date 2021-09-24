@@ -4,6 +4,7 @@ import { error, info } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 import { queryRequest, popularRequest, playingNowRequest } from './searchFilm';
+// import { addToLiked } from './js/addToList';
 
 const inputRef = document.querySelector('.header__search');
 const galleryRef = document.querySelector('.search-result__card-container');
@@ -22,8 +23,11 @@ export const searchApp = {
     observeRef.classList.remove('observe--hidden');
     queryRequest(inputRef.value, this.page)
       .then(({ data }) => {
-        galleryRef.innerHTML = cardTmpl(data);
-        if (data.total_pages === 1) {
+        console.log(data)
+          ;
+        galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
+
+        console.log(addActiveBtn(data)); if (data.total_pages === 1) {
           this.hideObserver();
           return;
         };
@@ -55,7 +59,8 @@ export const searchApp = {
           this.hideObserver();
           return;
         }
-        galleryRef.insertAdjacentHTML('beforeend', cardTmpl(data));
+        galleryRef.insertAdjacentHTML('beforeend', cardTmpl(addActiveBtn(data)));
+        console.log(addActiveBtn(data));
         this.last.nextElementSibling.lastElementChild.scrollIntoView({
           behavior: 'smooth',
           block: 'end',
@@ -88,8 +93,9 @@ export const searchApp = {
 }
 export const renderPlayingNow = () => {
   playingNowRequest().then(({ data }) => {
-    galleryRef.innerHTML = cardTmpl(data);
-    if (data.results.length === 0) {
+    galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
+
+    console.log(addActiveBtn(data)); if (data.results.length === 0) {
       error({ text: 'Popular films not found', delay: 700 });
       return;
     };
@@ -105,4 +111,16 @@ export const renderPopular = () => {
       return;
     };
   })
+    .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
+};
+const addActiveBtn = (data) => {
+  const likeList = JSON.parse(localStorage.getItem('like-list'));
+  const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
+  const { results } = data;
+  console.log(likeList)
+  results.map(element => {
+    element.liked = likeList.includes(JSON.stringify(element.id));
+    element.watchLater = watchLaterList.includes(JSON.stringify(element.id));
+  })
+  return data
 };

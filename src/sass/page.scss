@@ -1,0 +1,32 @@
+.page {
+
+}
+
+.page__content-wrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+.page__title {
+	@extend %roboto-slab;
+	font-size: 24px;
+	font-weight: 600;
+	color: $text-grey;
+	text-align: center;
+}
+
+.page__description {
+	text-align: center;
+	margin-left: 10px;
+	font-weight: 400;
+	@extend %roboto-slab;
+	color: #222;
+	font-size: 16px;
+	bottom: 0;
+}
+
+.page__img {
+	width: 30%;
+	height: 30%;
+	border-radius: 2px;
+}

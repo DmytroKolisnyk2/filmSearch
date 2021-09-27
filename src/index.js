@@ -1,7 +1,7 @@
 import './sass/main.scss';
 import 'material-design-icons/iconfont/material-icons.css';
 import { openBar, closeOverlayBar } from './js/openBar';
-import { searchApp, renderPopular, renderPlayingNow } from './js/searchApp';
+import { searchApp, renderPopular, renderPlayingNow, renderPage } from './js/searchApp';
 import debounce from 'lodash.debounce';
 import { changeLikes, changeWatchLaterList } from './js/addToList';
 
@@ -24,6 +24,15 @@ inputRef.addEventListener('input', debounce(() => searchApp.searchPhoto.apply(se
 const observeRef = document.querySelector('#observe');
 const observer = new IntersectionObserver(searchApp.updatePhotos.bind(searchApp, observeRef));
 observer.observe(observeRef);
+
+document.querySelector('.search-result__card-container').onclick = (event) => {
+	let target = event.target;
+	console.log(target.classList.contains("card__menu-wrapper"));
+	if (!target.classList.contains("card__menu-wrapper")) {
+		return;
+	}
+	renderPage(target);
+};
 
 document.querySelector('.aside__overlay').addEventListener('click', closeOverlayBar);
 

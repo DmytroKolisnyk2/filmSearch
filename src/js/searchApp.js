@@ -1,9 +1,10 @@
 import cardTmpl from '../templates/searchCard.hbs';
 import asideListTmpl from '../templates/asideList.hbs';
+import pageTmpl from '../templates/page.hbs';
 import { error, info } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
-import { queryRequest, popularRequest, playingNowRequest } from './searchFilm';
+import { queryRequest, popularRequest, playingNowRequest, pageRequest, similarRequest } from './searchFilm';
 import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/themes/light-border.css';
@@ -26,8 +27,7 @@ export const searchApp = {
     observeRef.classList.remove('observe--hidden');
     queryRequest(inputRef.value, this.page)
       .then(({ data }) => {
-        console.log(data)
-          ;
+        console.log(data);
         galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
 
         console.log(addActiveBtn(data)); if (data.total_pages === 1) {
@@ -131,4 +131,13 @@ const addActiveBtn = (data) => {
     animation: 'shift-away'
 });
   return data
+};
+
+export const renderPage = (card) => {
+	// console.log(card);
+
+  pageRequest(card.parentNode.dataset.id).then((data) => {
+    document.querySelector('.search-result').innerHTML = pageTmpl(data);
+  })
+    .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
 };

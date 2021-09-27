@@ -14,13 +14,23 @@
         <h2 class="background__headline background__text">{{data.title}}</h2>
         <p class="background__tagline background__text">Tagline: <span>{{data.tagline}}</span></p>
         <p class="background__genre background__text">Genre: 
-					{{#each object}}
-						<span>{{data.genre}}</span>
+					{{#each data.genres}}
+						<span>{{this.name}}  </span>
 					{{/each}}
 				</p>
         <div class="best-movies__rating info__rating">
           <span class="rating__text">{{data.vote_average}}</span>
         </div>
+				<div data-id="{{this.id}}" class="card__menu page__menu">
+					<button data-tippy-content="Add to watch later" data-action="watch-later" type="button"class="card-menu__btn card-menu__btn--watch-later page__icon {{#if this.watchLater}}card-menu__btn--later{{/if}}">
+						<i class="material-icons material-icons--1 material-icons--3">playlist_add</i>
+						<i class="material-icons material-icons--2 material-icons--4">playlist_add_check</i>
+					</button>
+					<button data-tippy-content="Like" data-action="like" type="button"class="card-menu__btn card-menu__btn--like page__icon {{#if this.liked}}card-menu__btn--liked{{/if}}">
+						<i class="material-icons material-icons--1 material-icons--3">favorite_border</i>
+						<i class="material-icons material-icons--2 material-icons--4">favorite</i>
+					</button>
+				</div>
       </div>
     </div>
   </div>
@@ -32,16 +42,6 @@
     <span>Summary:</span>
     {{data.overview}}
   </p>
-	<div data-id="{{this.id}}" class="card__menu">
-		<button data-tippy-content="Add to watch later" data-action="watch-later" type="button"class="card-menu__btn card-menu__btn--watch-later {{#if this.watchLater}}card-menu__btn--later{{/if}}">
-			<i class="material-icons material-icons--1">playlist_add</i>
-			<i class="material-icons material-icons--2">playlist_add_check</i>
-		</button>
-		<button data-tippy-content="Like" data-action="like" type="button"class="card-menu__btn card-menu__btn--like {{#if this.liked}}card-menu__btn--liked{{/if}}">
-			<i class="material-icons material-icons--1">favorite_border</i>
-			<i class="material-icons material-icons--2">favorite</i>
-		</button>
-		</div>
 	{{#if data.video}}
   	<iframe class="info__trailer" width="947" height="539" src="{{data.video}}" title="YouTube video player"frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"allowfullscreen></iframe>
 	{{/if}}
@@ -49,24 +49,3 @@
 
 	{{/unless}}
 </section>
-{{!-- <section class="page">
-  <h2 class="page__title">{{data.title}}</h2>
-  <div class="page__content-wrapper">
-		{{#if data.poster_path}}
-    	<img width="350" height="400" class="card__img page__img" src="https://image.tmdb.org/t/p/w500{{data.poster_path}}" />
-    {{/if}}
-    {{#unless data.poster_path}}
-    	<img width="350" height="400" alt="no-poster" class="page__img" src="./images/no-poster.png" />
-    {{/unless}}
-    <p class="page__description">{{data.overview}}</p>
-	</div>
-  <span data-tippy-content="Rating" type="button" class="card-menu__btn card-menu__rating">{{data.vote_average}}</span>
-  <button data-tippy-content="Add to watch later" data-action="watch-later" type="button" class="card-menu__btn card-menu__btn--watch-later {{#if this.watchLater}}card-menu__btn--later{{/if}}">
-    <i class="material-icons material-icons--1">playlist_add</i>
-    <i class="material-icons material-icons--2">playlist_add_check</i>
-  </button>
-  <button data-tippy-content="Like" data-action="like" type="button" class="card-menu__btn card-menu__btn--like {{#if this.liked}}card-menu__btn--liked{{/if}}">
-    <i class="material-icons material-icons--1">favorite_border</i>
-    <i class="material-icons material-icons--2">favorite</i>
-  </button>
-</section> --}}

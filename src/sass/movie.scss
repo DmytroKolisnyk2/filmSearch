@@ -91,3 +91,22 @@
 .info__trailer {
   width: 100%;
 }
+.page__icon {
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  border-radius: 15px;
+}
+.page__menu {
+  top: 50%;
+  left: 33%;
+  padding: 2px 0;
+  
+}
+
+.page__icon .material-icons--3 {
+  font-size: 40px;
+}
+.page__icon .material-icons--4 {
+  font-size: 40px;
+}

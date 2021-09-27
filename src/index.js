@@ -4,6 +4,7 @@ import { openBar, closeOverlayBar } from './js/openBar';
 import { searchApp, renderPopular, renderPlayingNow } from './js/searchApp';
 import debounce from 'lodash.debounce';
 import { changeLikes, changeWatchLaterList } from './js/addToList';
+import { openSettings } from './js/settingsModal';
 
 localStorage.setItem('like-list', localStorage.getItem('like-list') || JSON.stringify([]));
 localStorage.setItem('watch-later', localStorage.getItem('watch-later') || JSON.stringify([]));
@@ -29,3 +30,5 @@ document.querySelector('.aside__overlay').addEventListener('click', closeOverlay
 
 renderPopular();
 renderPlayingNow();
+
+openSettings();

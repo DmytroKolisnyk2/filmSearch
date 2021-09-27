@@ -16,3 +16,10 @@ export const popularRequest = () => {
 export const playingNowRequest = () => {
   return axios.get(`/movie/now_playing`);
 };
+
+export const searchCountries = () => {
+  return axios.get(`/configuration/countries`);
+};
+export const searchLang = () => {
+  return axios.get(`/configuration/languages`);
+};

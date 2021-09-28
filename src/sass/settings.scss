@@ -1,0 +1,90 @@
+.settings {
+  width: 500px;
+  background-color: $aside-bg;
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px 15px 30px;
+  border: 3px solid $headline-bg;
+}
+.settings__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 0 auto 25px;
+}
+.settings__content-wrapper {
+  width: 100%;
+}
+
+.settings__caption {
+  @extend %roboto-slab;
+  font-size: 20px;
+  margin-bottom: 14px;
+  color: $headline-white;
+  & i {
+    position: relative;
+    top: 4px;
+    right: 3px;
+    color: $rating-color;
+  }
+  & > .material-icons--lang {
+    right: 7px;
+  }
+}
+.settings__headline {
+  letter-spacing: 1px;
+  font-weight: 800;
+  @extend %roboto-slab;
+  font-size: 25px;
+  margin-bottom: 18px;
+  color: $headline-white;
+}
+.settings__select {
+  &--region {
+    width: 80%;
+  }
+  transition: $linear-small;
+  width: 92%;
+  margin: 0 auto;
+  display: block;
+  font-size: 16px;
+  @extend %roboto-slab;
+  font-weight: 600;
+  color: $aside-bg;
+  line-height: 1.3;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 0.5em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url("../images/arrow.png"),
+    linear-gradient(to bottom, $headline-white 0%, $headline-white 100%);
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 55%, 0 0;
+  background-size: 1.07em auto, 100%;
+}
+.settings__select::-ms-expand {
+  display: none;
+}
+.settings__select:hover {
+  border-color: #888;
+}
+.settings__select:focus {
+  outline: none;
+}
+
+.settings__select option {
+  font-weight: normal;
+  @extend %roboto-slab;
+}
+*[dir="rtl"] .settings__select,
+:root:lang(ar) .settings__select,
+:root:lang(iw) .settings__select {
+  background-position: left 0.7em top 50%, 0 0;
+  padding: 0.6em 0.8em 0.5em 1.4em;
+}

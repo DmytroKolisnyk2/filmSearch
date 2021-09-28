@@ -23,3 +23,10 @@ export const pageRequest = (id) => {
 export const similarRequest = (id) => {
   return axios.get(`/movie/${id}/similar`);
 }
+
+export const searchCountries = () => {
+  return axios.get(`/configuration/countries`);
+};
+export const searchLang = () => {
+  return axios.get(`/configuration/languages`);
+};

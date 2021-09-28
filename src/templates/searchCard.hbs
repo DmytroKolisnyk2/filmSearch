@@ -8,7 +8,7 @@
     <img width="350" height="400" alt="no-poster" class="card__img" src="./images/no-poster.png" />
     {{/unless}}
   </div>
-  <div class="card__menu-wrapper">
+  <div data-id="{{this.id}}" class="card__menu-wrapper">
     <div data-tippy-content="Country" class="card__lang">{{this.original_language}}</div>
     <div data-id="{{this.id}}" class="card__menu">
       <span data-tippy-content="Rating" type="button"
@@ -23,7 +23,7 @@
         <i class="material-icons material-icons--1">favorite_border</i>
         <i class="material-icons material-icons--2">favorite</i>
       </button>
-      <button data-tippy-content="Info" type="button" class="card-menu__btn">
+      <button data-id="{{this.id}}" data-tippy-content="Info" type="button" class="card-menu__btn">
         <i class="material-icons">info</i>
       </button>
     </div>

@@ -1,6 +1,6 @@
 <div class="movie-info">
 	<div class="info__background"
-		style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 100%), url(https://image.tmdb.org/t/p/w500{{data.backdrop_path}});   background-size: cover; background-position: center;">
+		style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 100%), url(https://image.tmdb.org/t/p/original{{data.backdrop_path}});   background-size: cover; background-position: center;">
 		<div class="background__content-wrapper">
 			<div class="background__img-wrapper">
 				{{#if data.poster_path}}
@@ -24,12 +24,12 @@
 					<span data-tippy-content="Rating" class="rating-bg__text">{{data.vote_average}}</span>
 
 					<button data-tippy-content="Add to watch later" data-action="watch-later" type="button"
-						class="card-menu__btn card-menu__btn--watch-later {{#if watchLater}}card-menu__btn--later{{/if}}">
+						class="card-menu__btn card-menu__btn--watch-later {{#if watchLater}} card-menu__btn--later{{/if}}">
 						<i class="material-icons material-icons--1 material-icons--3">playlist_add</i>
 						<i class="material-icons material-icons--2 material-icons--4">playlist_add_check</i>
 					</button>
 					<button data-tippy-content="Like" data-action="like" type="button"
-						class="card-menu__btn card-menu__btn--like {{#if liked}}card-menu__btn--liked{{/if}}">
+						class="card-menu__btn card-menu__btn--like {{#if liked}} card-menu__btn--liked{{/if}}">
 						<i class="material-icons material-icons--1 material-icons--3">favorite_border</i>
 						<i class="material-icons material-icons--2 material-icons--4">favorite</i>
 					</button>

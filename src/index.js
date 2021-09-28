@@ -27,16 +27,18 @@ const observeRef = document.querySelector('#observe');
 const observer = new IntersectionObserver(searchApp.updatePhotos.bind(searchApp, observeRef));
 observer.observe(observeRef);
 
-document.querySelector('.search-result__card-container').onclick = (event) => {
-	let target = event.target;
-	if (!target.classList.contains("card__menu-wrapper")) return;
-	renderPage(target);
-};
-document.querySelector('.search-result__card-container').onclick = (event) => {
-	let target = event.target;
-	if (!target.classList.contains("card__menu-wrapper")) return;
-	renderPage(target);
-};
+document.querySelector('.search-result__card-container').addEventListener('click', (event) => {
+  let target = event.target;
+  if (!target.dataset.id) return;
+  renderPage(target.dataset.id);
+});
+
+document.querySelector('.best-movies__list').addEventListener('click', (event) => {
+  let target = event.target;
+  if (!target.dataset.id) return;
+  closeBar();
+  renderPage(target.dataset.id);
+});
 
 document.querySelector('.aside__overlay').addEventListener('click', closeOverlayBar);
 document.querySelector('.controls__item[data-action="upcoming"').addEventListener('click', ('click', () => {

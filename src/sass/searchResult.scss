@@ -66,13 +66,15 @@
     }
   }
   &:nth-child(1) {
-    cursor: pointer;
+    cursor: text;
+
     &:hover {
       background-color: $rating-color;
     }
   }
 }
 .card-menu__rating {
+  cursor: text;
   font-size: 20px;
   font-weight: 700;
   width: 55px;

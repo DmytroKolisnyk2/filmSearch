@@ -1,0 +1,51 @@
+<div class="movie-info">
+  <div class="info__background" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 100%), url(https://image.tmdb.org/t/p/w500{{data.backdrop_path}});   background-size: cover; background-position: center;">
+    <div class="background__content-wrapper">
+      <div class="background__img-wrapper">
+				{{#if data.poster_path}}
+					<img width="350" height="400" class="background__img" src="https://image.tmdb.org/t/p/w500{{data.poster_path}}" />
+				{{/if}}
+				{{#unless data.poster_path}}
+					<img width="350" height="400" alt="no-poster" class="background__img" src="./images/no-poster.png" />
+				{{/unless}}
+      </div>
+      <div class="background__text-wrapper">
+        <span class="background__year background__text">{{data.release_date}}</span>
+        <h2 class="background__headline background__text">{{data.title}}</h2>
+        <p class="background__tagline background__text">Tagline: <span>{{data.tagline}}</span></p>
+        <p class="background__genre background__text">Genre: 
+					{{#each data.genres}}
+						<span>{{this.name}}  </span>
+					{{/each}}
+				</p>
+        <div class="best-movies__rating info__rating">
+          <span class="rating__text">{{data.vote_average}}</span>
+        </div>
+				<div data-id="{{this.id}}" class="card__menu page__menu">
+					<button data-tippy-content="Add to watch later" data-action="watch-later" type="button"class="card-menu__btn card-menu__btn--watch-later page__icon {{#if this.watchLater}}card-menu__btn--later{{/if}}">
+						<i class="material-icons material-icons--1 material-icons--3">playlist_add</i>
+						<i class="material-icons material-icons--2 material-icons--4">playlist_add_check</i>
+					</button>
+					<button data-tippy-content="Like" data-action="like" type="button"class="card-menu__btn card-menu__btn--like page__icon {{#if this.liked}}card-menu__btn--liked{{/if}}">
+						<i class="material-icons material-icons--1 material-icons--3">favorite_border</i>
+						<i class="material-icons material-icons--2 material-icons--4">favorite</i>
+					</button>
+				</div>
+      </div>
+    </div>
+  </div>
+  <p class="info__text">
+    <span>Home page: </span>
+    <a href="{{data.homepage}}" class="info__home-page-link">{{data.homepage}}</a>
+  </p>
+  <p class="info__text">
+    <span>Summary:</span>
+    {{data.overview}}
+  </p>
+	{{#if data.video}}
+  	<iframe class="info__trailer" width="947" height="539" src="{{data.video}}" title="YouTube video player"frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"allowfullscreen></iframe>
+	{{/if}}
+	{{#unless data.video}}
+
+	{{/unless}}
+</section>

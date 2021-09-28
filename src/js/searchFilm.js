@@ -17,6 +17,13 @@ export const playingNowRequest = () => {
   return axios.get(`/movie/now_playing`);
 };
 
+export const pageRequest = (id) => {
+  return axios.get(`/movie/${id}`);
+}
+export const similarRequest = (id) => {
+  return axios.get(`/movie/${id}/similar`);
+}
+
 export const searchCountries = () => {
   return axios.get(`/configuration/countries`);
 };

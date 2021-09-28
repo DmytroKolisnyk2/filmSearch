@@ -1,10 +1,11 @@
 import './sass/main.scss';
 import 'material-design-icons/iconfont/material-icons.css';
 import { openBar, closeOverlayBar } from './js/openBar';
-import { searchApp, renderPopular, renderPlayingNow, renderPage } from './js/searchApp';
+import { searchApp, renderPopular, renderPlayingNow, renderPage, renderUpcoming } from './js/searchApp';
 import debounce from 'lodash.debounce';
 import { changeLikes, changeWatchLaterList } from './js/addToList';
 import { openSettings } from './js/settingsModal';
+import { closeBar } from './js/openBar';
 
 localStorage.setItem('like-list', localStorage.getItem('like-list') || JSON.stringify([]));
 localStorage.setItem('watch-later', localStorage.getItem('watch-later') || JSON.stringify([]));
@@ -31,9 +32,21 @@ document.querySelector('.search-result__card-container').onclick = (event) => {
 	if (!target.classList.contains("card__menu-wrapper")) return;
 	renderPage(target);
 };
+document.querySelector('.search-result__card-container').onclick = (event) => {
+	let target = event.target;
+	if (!target.classList.contains("card__menu-wrapper")) return;
+	renderPage(target);
+};
 
 document.querySelector('.aside__overlay').addEventListener('click', closeOverlayBar);
-
+document.querySelector('.controls__item[data-action="upcoming"').addEventListener('click', ('click', () => {
+	closeBar();
+	renderUpcoming();
+}));
+document.querySelector('.controls__item[data-action="playingNow"').addEventListener('click', () => {
+	closeBar();
+	renderPlayingNow();
+});
 renderPopular();
 renderPlayingNow();
 

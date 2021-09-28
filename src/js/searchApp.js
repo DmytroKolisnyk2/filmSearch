@@ -26,14 +26,12 @@ export const searchApp = {
     this.page = 1;
     this.blocked = true;
     galleryRef.innerHTML = '';
-    // observeRef.style.display = 'block';
     observeRef.classList.remove('observe--hidden');
     queryRequest(inputRef.value, this.page)
       .then(({ data }) => {
         console.log(data);
         galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
-
-        console.log(addActiveBtn(data)); if (data.total_pages === 1) {
+        if (data.total_pages === 1) {
           this.hideObserver();
           return;
         };
@@ -54,8 +52,6 @@ export const searchApp = {
 
   updatePhotos() {
     if (this.page === 1 || this.blocked) return;
-    // observeRef.classList.add('observe--hidden');
-    console.log('loading...')
     this.blocked = true;
     this.last = galleryRef.lastElementChild;
     queryRequest(inputRef.value, this.page)
@@ -83,7 +79,6 @@ export const searchApp = {
 
   restartObserver() {
     setTimeout(() => {
-      // observeRef.style.display = 'block';
       this.blocked = false;
       observeRef.classList.remove('observe--hidden');
       this.page++;
@@ -92,7 +87,6 @@ export const searchApp = {
   hideObserver() {
     setTimeout(() => {
       observeRef.classList.add('observe--hidden');
-      // observeRef.style.display = 'none'
     }, 200);
 
   }
@@ -100,8 +94,7 @@ export const searchApp = {
 export const renderPlayingNow = () => {
   playingNowRequest().then(({ data }) => {
     galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
-
-    console.log(addActiveBtn(data)); if (data.results.length === 0) {
+    if (data.results.length === 0) {
       error({ text: 'Popular films not found', delay: 700 });
       return;
     };
@@ -123,28 +116,41 @@ const addActiveBtn = (data) => {
   const likeList = JSON.parse(localStorage.getItem('like-list'));
   const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
   const { results } = data;
-  console.log(likeList)
   results.map(element => {
     element.liked = likeList.includes(JSON.stringify(element.id));
     element.watchLater = watchLaterList.includes(JSON.stringify(element.id));
   });
-  tippy('[data-tippy-content]',{
+  tippy('[data-tippy-content]', {
     placement: 'bottom',
     theme: 'light-border',
     animation: 'shift-away'
-});
+  });
+  return data
+};
+const addActiveBtnPage = (data) => {
+  const likeList = JSON.parse(localStorage.getItem('like-list'));
+  const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
+  data.liked = likeList.includes(JSON.stringify(data.data.id));
+  data.watchLater = watchLaterList.includes(JSON.stringify(data.data.id));
+  tippy('[data-tippy-content]', {
+    placement: 'bottom',
+    theme: 'light-border',
+    animation: 'shift-away'
+  });
+  console.log(data.watchLater)
   return data
 };
 
 export const renderPage = (card) => {
   pageRequest(card.parentNode.dataset.id).then((data) => {
     console.log(data);
-    document.querySelector('.search-result').innerHTML = pageTmpl(data);
+    document.querySelector('.search-result').innerHTML = pageTmpl(addActiveBtnPage(data));
     console.log(similarRequest(card.parentNode.dataset.id).then((data) => {
       console.log(data);
     }));
-    document.querySelector('.card__menu').addEventListener('click', changeLikes);
-    document.querySelector('.card__menu').addEventListener('click', changeWatchLaterList);
+    document.querySelector('.page__menu').addEventListener('click', changeLikes);
+    document.querySelector('.page__menu').addEventListener('click', changeWatchLaterList);
+
   })
     .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
 

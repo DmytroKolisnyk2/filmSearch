@@ -13,7 +13,7 @@ const galleryRef = document.querySelector('.search-result__card-container');
 galleryRef.addEventListener('click', changeLikes);
 galleryRef.addEventListener('click', changeWatchLaterList);
 
-document.querySelector('.controls__counter--watch-later').innerHTML = JSON.parse(localStorage.getItem('like-list')).length;
+document.querySelector('.controls__counter--watch-later').innerHTML = JSON.parse(localStorage.getItem('watch-later')).length;
 document.querySelector('.controls__counter--favorite').innerHTML = JSON.parse(localStorage.getItem('like-list')).length;
 
 const burgerRef = document.querySelector('.header__burger');
@@ -28,10 +28,7 @@ observer.observe(observeRef);
 
 document.querySelector('.search-result__card-container').onclick = (event) => {
 	let target = event.target;
-	console.log(target.classList.contains("card__menu-wrapper"));
-	if (!target.classList.contains("card__menu-wrapper")) {
-		return;
-	}
+	if (!target.classList.contains("card__menu-wrapper")) return;
 	renderPage(target);
 };
 
@@ -40,4 +37,4 @@ document.querySelector('.aside__overlay').addEventListener('click', closeOverlay
 renderPopular();
 renderPlayingNow();
 
-openSettings();
+// openSettings();

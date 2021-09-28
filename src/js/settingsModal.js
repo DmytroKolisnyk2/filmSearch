@@ -5,11 +5,12 @@ import { searchCountries, searchLang } from './searchFilm';
 
 export const openSettings = () => {
   try {
+    const instance = basicLightbox.create(`<div><img src="./images/loader.gif" alt="loader"></div>`);
+    instance.show()
     searchCountries().then((data) => {
       searchLang().then((langData) => {
         data.langData = langData.data;
-        const instance = basicLightbox.create(`${settingsTmpl(data)}`);
-        instance.show()
+        document.querySelector('.basicLightbox__placeholder').innerHTML = settingsTmpl(data);
       })
     })
   }

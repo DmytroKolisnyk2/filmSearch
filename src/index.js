@@ -42,14 +42,15 @@ document.querySelector('.best-movies__list').addEventListener('click', (event) =
 
 document.querySelector('.aside__overlay').addEventListener('click', closeOverlayBar);
 document.querySelector('.controls__item[data-action="upcoming"').addEventListener('click', ('click', () => {
-	closeBar();
-	renderUpcoming();
+  closeBar();
+  renderUpcoming();
 }));
 document.querySelector('.controls__item[data-action="playingNow"').addEventListener('click', () => {
-	closeBar();
-	renderPlayingNow();
+  closeBar();
+  renderPlayingNow();
 });
 renderPopular();
 renderPlayingNow();
 
 // openSettings();
+document.querySelector('.header__settings').addEventListener('click', openSettings);;

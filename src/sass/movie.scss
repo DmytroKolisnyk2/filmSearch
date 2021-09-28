@@ -22,12 +22,16 @@
 }
 .background__img-wrapper {
   // width: 200px;
+  flex-shrink: 0;
   border-radius: 10px;
   overflow: hidden;
   margin-right: 35px;
   -webkit-box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
   -moz-box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
   box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 .background__tagline {
   margin-bottom: 10px;
@@ -122,5 +126,9 @@
   background-color: $rating-color;
   border-radius: 5px;
   color: $aside-bg;
-
 }
+// .basicLightbox__placeholder{
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }

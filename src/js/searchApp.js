@@ -38,6 +38,7 @@ export const searchApp = {
     queryRequest(inputRef.value, this.page)
       .then(({ data }) => {
         galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
+        addTippy();
         if (data.total_pages === 1) {
           this.hideObserver();
           return;
@@ -70,6 +71,7 @@ export const searchApp = {
           return;
         }
         galleryRef.insertAdjacentHTML('beforeend', cardTmpl(addActiveBtn(data)));
+        addTippy();
         this.last.nextElementSibling.lastElementChild.scrollIntoView({
           behavior: 'smooth',
           block: 'end',
@@ -104,6 +106,7 @@ export const renderPlayingNow = () => {
   playingNowRequest()
     .then(({ data }) => {
       galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
+      addTippy();
       if (data.results.length === 0) {
         error({ text: 'Popular films not found', delay: 700 });
         return;
@@ -130,11 +133,6 @@ const addActiveBtn = data => {
     element.liked = likeList.includes(JSON.stringify(element.id));
     element.watchLater = watchLaterList.includes(JSON.stringify(element.id));
   });
-  tippy('[data-tippy-content]', {
-    placement: 'bottom',
-    theme: 'light-border',
-    animation: 'shift-away',
-  });
   return data;
 };
 const addActiveBtnPage = data => {
@@ -142,11 +140,6 @@ const addActiveBtnPage = data => {
   const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
   data.liked = likeList.includes(JSON.stringify(data.data.id));
   data.watchLater = watchLaterList.includes(JSON.stringify(data.data.id));
-  tippy('[data-tippy-content]', {
-    placement: 'bottom',
-    theme: 'light-border',
-    animation: 'shift-away',
-  });
   return data;
 };
 
@@ -158,6 +151,7 @@ export const renderPage = id => {
       document.querySelector('.page-result').innerHTML = pageTmpl(addActiveBtnPage(data));
       document.querySelector('.page__menu').addEventListener('click', changeLikes);
       document.querySelector('.page__menu').addEventListener('click', changeWatchLaterList);
+      addTippy();
     })
     .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
 };
@@ -171,4 +165,12 @@ export const renderUpcoming = () => {
       }
     })
     .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
+};
+const addTippy = () => {
+  tippy('[data-tippy-content]', {
+    placement: 'bottom',
+    theme: 'light-border',
+    animation: 'shift-away',
+  });
+
 };

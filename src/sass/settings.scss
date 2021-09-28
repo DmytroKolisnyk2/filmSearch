@@ -1,20 +1,33 @@
 .settings {
+  position: relative;
+  z-index: 1000;
   width: 500px;
   background-color: $aside-bg;
   border-radius: 8px;
   text-align: center;
   padding: 20px 15px 30px;
   border: 3px solid $headline-bg;
+  @media screen and (max-width: 528px) {
+    width: 320px;
+  }
 }
 .settings__wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   margin: 0 auto 25px;
+  @media screen and (max-width: 528px) {
+    flex-wrap: wrap;
+  }
 }
 .settings__content-wrapper {
   width: 100%;
+  @media screen and (max-width: 528px) {
+    margin-bottom: 20px;
+    &:nth-last-child(1) {
+      margin: 0;
+    }
+  }
 }
 
 .settings__caption {
@@ -43,7 +56,11 @@
 .settings__select {
   &--region {
     width: 80%;
+    @media screen and (max-width: 528px) {
+      width: 92%;
+    }
   }
+  cursor: pointer;
   transition: $linear-small;
   width: 92%;
   margin: 0 auto;
@@ -62,8 +79,7 @@
   -webkit-appearance: none;
   appearance: none;
   background-color: #fff;
-  background-image: url("../images/arrow.png"),
-    linear-gradient(to bottom, $headline-white 0%, $headline-white 100%);
+  background-image: url("../images/arrow.png"), linear-gradient(to bottom, $headline-white 0%, $headline-white 100%);
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 55%, 0 0;
   background-size: 1.07em auto, 100%;

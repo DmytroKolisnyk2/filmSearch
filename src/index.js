@@ -1,7 +1,7 @@
 import './sass/main.scss';
 import 'material-design-icons/iconfont/material-icons.css';
 import { openBar, closeOverlayBar } from './js/openBar';
-import { searchApp, renderPopular, renderPlayingNow, renderPage } from './js/searchApp';
+import { searchApp, renderPopular, renderPlayingNow, renderPage, renderUpcoming } from './js/searchApp';
 import debounce from 'lodash.debounce';
 import { changeLikes, changeWatchLaterList } from './js/addToList';
 import { openSettings } from './js/settingsModal';
@@ -41,7 +41,14 @@ document.querySelector('.best-movies__list').addEventListener('click', (event) =
 });
 
 document.querySelector('.aside__overlay').addEventListener('click', closeOverlayBar);
-
+document.querySelector('.controls__item[data-action="upcoming"').addEventListener('click', ('click', () => {
+	closeBar();
+	renderUpcoming();
+}));
+document.querySelector('.controls__item[data-action="playingNow"').addEventListener('click', () => {
+	closeBar();
+	renderPlayingNow();
+});
 renderPopular();
 renderPlayingNow();
 

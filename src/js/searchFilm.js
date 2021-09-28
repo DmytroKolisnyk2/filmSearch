@@ -8,22 +8,21 @@ axios.defaults.params = {
 export const queryRequest = (query, page) => {
   return axios.get(`/search/movie?query=${query}&page=${page}`);
 };
-
 export const popularRequest = () => {
   return axios.get(`/movie/top_rated`);
 };
-
 export const playingNowRequest = () => {
   return axios.get(`/movie/now_playing`);
 };
-
+export const upcomingRequest = () => {
+  return axios.get(`/movie/upcoming`);
+};
 export const pageRequest = (id) => {
   return axios.get(`/movie/${id}`);
 }
 export const similarRequest = (id) => {
   return axios.get(`/movie/${id}/similar`);
 }
-
 export const searchCountries = () => {
   return axios.get(`/configuration/countries`);
 };

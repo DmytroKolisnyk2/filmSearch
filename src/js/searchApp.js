@@ -4,7 +4,7 @@ import pageTmpl from '../templates/page.hbs';
 import { error, info } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
-import { queryRequest, popularRequest, playingNowRequest, pageRequest, similarRequest } from './searchFilm';
+import { queryRequest, popularRequest, playingNowRequest, pageRequest, similarRequest, upcomingRequest } from './searchFilm';
 import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/themes/light-border.css';
@@ -156,6 +156,17 @@ export const renderPage = (id) => {
     document.querySelector('.page__menu').addEventListener('click', changeLikes);
     document.querySelector('.page__menu').addEventListener('click', changeWatchLaterList);
 
+  })
+    .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
+
+};
+export const renderUpcoming = () => {
+  upcomingRequest().then(({ data }) => {
+    galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
+    if (data.results.length === 0) {
+      error({ text: 'Popular films not found', delay: 700 });
+      return;
+    };
   })
     .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
 

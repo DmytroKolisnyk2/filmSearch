@@ -8,7 +8,6 @@ export const openSettings = () => {
     searchCountries().then((data) => {
       searchLang().then((langData) => {
         data.langData = langData.data;
-        console.log(data)
         const instance = basicLightbox.create(`${settingsTmpl(data)}`);
         instance.show()
       })

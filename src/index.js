@@ -5,6 +5,7 @@ import { searchApp, renderPopular, renderPlayingNow, renderPage } from './js/sea
 import debounce from 'lodash.debounce';
 import { changeLikes, changeWatchLaterList } from './js/addToList';
 import { openSettings } from './js/settingsModal';
+import { closeBar } from './js/openBar';
 
 localStorage.setItem('like-list', localStorage.getItem('like-list') || JSON.stringify([]));
 localStorage.setItem('watch-later', localStorage.getItem('watch-later') || JSON.stringify([]));
@@ -26,11 +27,18 @@ const observeRef = document.querySelector('#observe');
 const observer = new IntersectionObserver(searchApp.updatePhotos.bind(searchApp, observeRef));
 observer.observe(observeRef);
 
-document.querySelector('.search-result__card-container').onclick = (event) => {
-	let target = event.target;
-	if (!target.classList.contains("card__menu-wrapper")) return;
-	renderPage(target);
-};
+document.querySelector('.search-result__card-container').addEventListener('click', (event) => {
+  let target = event.target;
+  if (!target.dataset.id) return;
+  renderPage(target.dataset.id);
+});
+
+document.querySelector('.best-movies__list').addEventListener('click', (event) => {
+  let target = event.target;
+  if (!target.dataset.id) return;
+  closeBar();
+  renderPage(target.dataset.id);
+});
 
 document.querySelector('.aside__overlay').addEventListener('click', closeOverlayBar);
 

@@ -128,6 +128,7 @@ const addActiveBtn = (data) => {
   return data
 };
 const addActiveBtnPage = (data) => {
+
   const likeList = JSON.parse(localStorage.getItem('like-list'));
   const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
   data.liked = likeList.includes(JSON.stringify(data.data.id));
@@ -141,13 +142,14 @@ const addActiveBtnPage = (data) => {
   return data
 };
 
-export const renderPage = (card) => {
-  pageRequest(card.parentNode.dataset.id).then((data) => {
+export const renderPage = (id) => {
+  console.log(id)
+  pageRequest(id).then((data) => {
     console.log(data);
     document.querySelector('.search-result').innerHTML = pageTmpl(addActiveBtnPage(data));
-    console.log(similarRequest(card.parentNode.dataset.id).then((data) => {
-      console.log(data);
-    }));
+    // console.log(similarRequest(card.parentNode.dataset.id).then((data) => {
+    //   console.log(data);
+    // }));
     document.querySelector('.page__menu').addEventListener('click', changeLikes);
     document.querySelector('.page__menu').addEventListener('click', changeWatchLaterList);
 

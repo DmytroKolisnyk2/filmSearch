@@ -7,9 +7,9 @@
         <i class="material-icons material-icons--lang">translate</i>Language
       </h3>
       <select class='settings__select' name="language" id="language">
-        <option value="" selected disabled hidden>Default</option>
+        {{!-- <option value="" selected disabled hidden>Default</option> --}}
         {{#each langData}}
-        <option value="{{this.iso_3166_1}}">{{this.english_name}}</option>
+        <option value="{{this.iso_639_1}}">{{this.english_name}}</option>
         {{/each}}
       </select>
     </div>
@@ -19,7 +19,7 @@
         <i class="material-icons">palette</i>Theme
       </h3>
       <select value='Default' class='settings__select' name="theme" id="theme">
-        <option value="" selected disabled hidden>Default</option>
+        {{!-- <option value="" selected disabled hidden>Default</option> --}}
         <option value="Dark">Dark</option>
         <option value="Light">Light</option>
       </select>
@@ -31,7 +31,7 @@
     Region
   </h3>
   <select class='settings__select settings__select--region' name="region" id="region">
-    <option value="" selected disabled hidden>Default</option>
+    {{!-- <option value="" selected disabled hidden>Default</option> --}}
     {{#each data}}
     <option value="{{this.iso_3166_1}}">{{this.native_name}}</option>
     {{/each}}

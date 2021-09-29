@@ -127,6 +127,10 @@ export const renderPage = id => {
 
   pageRequest(id)
     .then(data => {
+      similarRequest(id).then((similar) => {
+        console.log(similar)
+      })
+
       document.querySelector('.search-result__card-container').innerHTML = '';
       document.querySelector('.page-result').innerHTML = pageTmpl(addActiveBtnPage(data));
       document.querySelector('.page__menu').addEventListener('click', changeLikes);

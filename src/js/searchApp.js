@@ -11,12 +11,16 @@ import {
   pageRequest,
   similarRequest,
   upcomingRequest,
+  videoRequest,
 } from './searchFilm';
 import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/themes/light-border.css';
 import 'tippy.js/animations/shift-away.css';
 import { changeLikes, changeWatchLaterList } from './addToList';
+import { tns } from 'tiny-slider/src/tiny-slider';
+import 'tiny-slider/src/tiny-slider.scss';
+import { addActiveBtn, addActiveBtnPage } from './addActiveBtn.js';
 
 const inputRef = document.querySelector('.header__search');
 const galleryRef = document.querySelector('.search-result__card-container');
@@ -103,42 +107,54 @@ export const searchApp = {
   },
 };
 
-const addActiveBtn = data => {
-  const likeList = JSON.parse(localStorage.getItem('like-list'));
-  const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
-  const { results } = data;
-  results.map(element => {
-    element.liked = likeList.includes(JSON.stringify(element.id));
-    element.watchLater = watchLaterList.includes(JSON.stringify(element.id));
-  });
-  return data;
-};
-
-const addActiveBtnPage = data => {
-  const likeList = JSON.parse(localStorage.getItem('like-list'));
-  const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
-  data.liked = likeList.includes(JSON.stringify(data.data.id));
-  data.watchLater = watchLaterList.includes(JSON.stringify(data.data.id));
-  return data;
-};
-
 export const renderPage = id => {
-  showLoader();
+  try {
+    showLoader();
+    (async () => {
+      const page = await pageRequest(id).then(data => data);
+      const similar = await similarRequest(id).then(similar => similar);
+      const video = await videoRequest(id).then(video => video);
 
-  pageRequest(id)
-    .then(data => {
-      similarRequest(id).then((similar) => {
-        console.log(similar)
-      })
+      Promise.all([page, similar, video]).then(res => {
+        const data = page;
+        data.similar = similar.data;
+        if (video.data.results[0])data.video = video.data.results[0].key;
 
-      document.querySelector('.search-result__card-container').innerHTML = '';
-      document.querySelector('.page-result').innerHTML = pageTmpl(addActiveBtnPage(data));
-      document.querySelector('.page__menu').addEventListener('click', changeLikes);
-      document.querySelector('.page__menu').addEventListener('click', changeWatchLaterList);
-      observeRef.classList.add('observe--hidden');
-      addTippy();
-    })
-    .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
+        galleryRef.innerHTML = '';
+        document.querySelector('.page-result').innerHTML = pageTmpl(addActiveBtnPage(data));
+        document.querySelector('.page__menu').addEventListener('click', changeLikes);
+        document.querySelector('.page__menu').addEventListener('click', changeWatchLaterList);
+        observeRef.classList.add('observe--hidden');
+        document.querySelector('.info__slider').addEventListener('click', (event) => {
+          let target = event.target;
+          console.log(target.dataset.id)
+          if (!target.dataset.id) return;
+          renderPage(target.dataset.id);
+        });
+        const slider = tns({
+          container: '.info__slider',
+          arrowKeys: true,
+          mouseDrag: true,
+          nav: false,
+          controlsContainer: '.info__custom-control',
+          responsive: {
+            768: {
+              items: 3,
+            },
+            1200: {
+              items: 5,
+            },
+            1400: {
+              items: 7,
+            },
+          },
+        });
+        addTippy();
+      });
+    })();
+  } catch (err) {
+    error({ text: 'Oops something went wrong', delay: 1000 });
+  }
 };
 
 export const renderPopular = () => {
@@ -190,11 +206,10 @@ const addTippy = () => {
     theme: 'light-border',
     animation: 'shift-away',
   });
-
 };
 
 const showLoader = () => {
-  document.querySelector('.search-result__card-container').innerHTML = '';
+  galleryRef.innerHTML = '';
   observeRef.classList.remove('observe--hidden');
   observer.unobserve(observeRef);
   document.querySelector('.page-result').innerHTML = '';

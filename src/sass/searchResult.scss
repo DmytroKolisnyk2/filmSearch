@@ -138,6 +138,7 @@
   &--hidden {
     // top: 100vh;
     transform: scale(0);
+    display: none;
   }
 }
 

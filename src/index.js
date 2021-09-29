@@ -23,9 +23,6 @@ burgerRef.addEventListener('click', openBar);
 const inputRef = document.querySelector('.header__search');
 inputRef.addEventListener('input', debounce(() => searchApp.searchPhoto.apply(searchApp), 500));
 
-const observeRef = document.querySelector('#observe');
-const observer = new IntersectionObserver(searchApp.updatePhotos.bind(searchApp, observeRef));
-observer.observe(observeRef);
 
 document.querySelector('.search-result__card-container').addEventListener('click', (event) => {
   let target = event.target;

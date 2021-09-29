@@ -33,7 +33,6 @@ export const searchApp = {
     galleryRef.innerHtml = '';
     this.page = 1;
     this.blocked = true;
-    galleryRef.innerHTML = '';
     observeRef.classList.remove('observe--hidden');
     queryRequest(inputRef.value, this.page)
       .then(({ data }) => {
@@ -48,6 +47,9 @@ export const searchApp = {
           error({ text: 'Query not found', delay: 700 });
           return;
         }
+
+        // const observeRef = document.querySelector('#observe');
+        observer.observe(observeRef);
         setTimeout(() => this.restartObserver(), 500);
       })
       .catch(() => {
@@ -100,20 +102,41 @@ export const searchApp = {
     }, 200);
   },
 };
-export const renderPlayingNow = () => {
-  document.querySelector('.page-result').innerHTML = '';
 
-  playingNowRequest()
-    .then(({ data }) => {
-      galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
+const addActiveBtn = data => {
+  const likeList = JSON.parse(localStorage.getItem('like-list'));
+  const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
+  const { results } = data;
+  results.map(element => {
+    element.liked = likeList.includes(JSON.stringify(element.id));
+    element.watchLater = watchLaterList.includes(JSON.stringify(element.id));
+  });
+  return data;
+};
+
+const addActiveBtnPage = data => {
+  const likeList = JSON.parse(localStorage.getItem('like-list'));
+  const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
+  data.liked = likeList.includes(JSON.stringify(data.data.id));
+  data.watchLater = watchLaterList.includes(JSON.stringify(data.data.id));
+  return data;
+};
+
+export const renderPage = id => {
+  showLoader();
+
+  pageRequest(id)
+    .then(data => {
+      document.querySelector('.search-result__card-container').innerHTML = '';
+      document.querySelector('.page-result').innerHTML = pageTmpl(addActiveBtnPage(data));
+      document.querySelector('.page__menu').addEventListener('click', changeLikes);
+      document.querySelector('.page__menu').addEventListener('click', changeWatchLaterList);
+      observeRef.classList.add('observe--hidden');
       addTippy();
-      if (data.results.length === 0) {
-        error({ text: 'Popular films not found', delay: 700 });
-        return;
-      }
     })
     .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
 };
+
 export const renderPopular = () => {
   popularRequest()
     .then(({ data }) => {
@@ -125,40 +148,15 @@ export const renderPopular = () => {
     })
     .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
 };
-const addActiveBtn = data => {
-  const likeList = JSON.parse(localStorage.getItem('like-list'));
-  const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
-  const { results } = data;
-  results.map(element => {
-    element.liked = likeList.includes(JSON.stringify(element.id));
-    element.watchLater = watchLaterList.includes(JSON.stringify(element.id));
-  });
-  return data;
-};
-const addActiveBtnPage = data => {
-  const likeList = JSON.parse(localStorage.getItem('like-list'));
-  const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
-  data.liked = likeList.includes(JSON.stringify(data.data.id));
-  data.watchLater = watchLaterList.includes(JSON.stringify(data.data.id));
-  return data;
-};
 
-export const renderPage = id => {
-  observeRef.classList.add('observe--hidden');
-  pageRequest(id)
-    .then(data => {
-      document.querySelector('.search-result__card-container').innerHTML = '';
-      document.querySelector('.page-result').innerHTML = pageTmpl(addActiveBtnPage(data));
-      document.querySelector('.page__menu').addEventListener('click', changeLikes);
-      document.querySelector('.page__menu').addEventListener('click', changeWatchLaterList);
-      addTippy();
-    })
-    .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
-};
-export const renderUpcoming = () => {
-  upcomingRequest()
+export const renderPlayingNow = () => {
+  showLoader();
+
+  playingNowRequest()
     .then(({ data }) => {
       galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
+      addTippy();
+      observeRef.classList.add('observe--hidden');
       if (data.results.length === 0) {
         error({ text: 'Popular films not found', delay: 700 });
         return;
@@ -166,6 +164,22 @@ export const renderUpcoming = () => {
     })
     .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
 };
+
+export const renderUpcoming = () => {
+  showLoader();
+
+  upcomingRequest()
+    .then(({ data }) => {
+      galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
+      observeRef.classList.add('observe--hidden');
+      if (data.results.length === 0) {
+        error({ text: 'Popular films not found', delay: 700 });
+        return;
+      }
+    })
+    .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
+};
+
 const addTippy = () => {
   tippy('[data-tippy-content]', {
     placement: 'bottom',
@@ -174,3 +188,12 @@ const addTippy = () => {
   });
 
 };
+
+const showLoader = () => {
+  document.querySelector('.search-result__card-container').innerHTML = '';
+  observeRef.classList.remove('observe--hidden');
+  observer.unobserve(observeRef);
+  document.querySelector('.page-result').innerHTML = '';
+};
+
+const observer = new IntersectionObserver(searchApp.updatePhotos.bind(searchApp, observeRef));

@@ -3,6 +3,7 @@ import 'basiclightbox/dist/basicLightbox.min.css';
 import settingsTmpl from '../templates/settings.hbs';
 import { searchCountries, searchLang } from './searchFilm';
 import { changeAxiosLanguage, changeAxiosRegion } from './searchFilm';
+import { changeTheme, themeStyles } from './changeStyle';
 
 export const openSettings = () => {
   try {
@@ -13,8 +14,11 @@ export const openSettings = () => {
     searchCountries().then(data => {
       searchLang().then(langData => {
         data.langData = langData.data;
+        data.themes = {};
+        data.themes.value = Object.keys(themeStyles);
         document.querySelector('.basicLightbox__placeholder').innerHTML = settingsTmpl(data);
         document.querySelector('#language').value = localStorage.getItem('language');
+        document.querySelector('#theme').value = localStorage.getItem('theme');
         document
           .querySelector('#language')
           .addEventListener('change', event => changeAxiosLanguage(event.target.value));
@@ -22,6 +26,9 @@ export const openSettings = () => {
         document
           .querySelector('#region')
           .addEventListener('change', event => changeAxiosRegion(event.target.value));
+        document
+          .querySelector('#theme')
+          .addEventListener('change', event => changeTheme(event.target.value));
       });
     });
   } catch {

@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800&display=swap");
 
-// :root{
-  $headline-white: rgb(254, 255, 241);
-  $aside-bg: #4c4145;
-  $headline-bg: #3a2f33;
-  $text-grey: rgb(199, 199, 199);
-  $rating-color: #fcd46b;
-// }
+:root{
+  --headline-white: #FEFFF1;
+  --aside-bg: #4c4145;
+  --headline-bg: #3a2f33;
+  --text-grey: #C7C7C7;
+  --rating-color: #fcd46b;
+}
+
   $linear-small: 200ms linear;
   $bar-width: 350px;
 

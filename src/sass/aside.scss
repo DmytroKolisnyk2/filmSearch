@@ -1,6 +1,6 @@
 .bar {
   width: $bar-width;
-  background-color: $aside-bg;
+  background-color: var(--aside-bg);
   height: 100vh;
   transition: $linear-small;
   flex-grow: 0;
@@ -23,10 +23,10 @@
   }
 }
 .bar__headline {
-  background-color: $headline-bg;
-  border: 2px solid $text-grey;
+  background-color: var(--headline-bg);
+  border: 2px solid var(--text-grey);
   width: 100%;
-  color: $headline-white;
+  color: var(--headline-white);
   padding: 5px;
   text-align: center;
   font-size: 18px;
@@ -41,7 +41,7 @@
 }
 .best-movies__headline {
   @extend %roboto-slab;
-  color: $headline-white;
+  color: var(--headline-white);
   font-size: 16px;
   margin-bottom: 10px;
 }
@@ -62,7 +62,7 @@
   display: flex;
   transition: $linear-small;
   &:hover {
-    background-color: $headline-bg;
+    background-color: var(--headline-bg);
   }
 }
 .best-movies__list {
@@ -71,7 +71,7 @@
   // height: calc(100vh - 218px);
 }
 .best-movies__rating {
-  background-color: $rating-color;
+  background-color: var(--rating-color);
   width: 36px;
   text-align: center;
   border-radius: 5px;
@@ -88,20 +88,20 @@
   padding: 7px;
   transition: $linear-small;
   &:hover {
-    background-color: $headline-bg;
+    background-color: var(--headline-bg);
     & .controls__link {
-      background-color: $headline-bg;
-      color: $headline-white;
+      background-color: var(--headline-bg);
+      color: var(--headline-white);
       & + span {
-        color: $headline-bg;
-        background-color: $text-grey;
+        color: var(--headline-bg);
+        background-color: var(--text-grey);
       }
     }
   }
 }
 .controls__link {
   @extend %roboto-slab;
-  color: $text-grey;
+  color: var(--text-grey);
   font-size: 16px;
   transition: $linear-small;
   align-items: center;
@@ -112,10 +112,10 @@
     font-size: 25px;
   }
   // &:hover {
-  //   background-color: $headline-bg;
-  //   color: $headline-white;
+  //   background-color: var(--headline-bg);
+  //   color: var(--headline-white);
   //   & + span {
-  //     color: $headline-white;
+  //     color: var(--headline-white);
   //   }
   // }
 }
@@ -132,9 +132,9 @@
   border-radius: 5px;
   display: block;
   @extend %roboto-slab;
-  color: $text-grey;
+  color: var(--text-grey);
   font-size: 13px;
-  background-color: $headline-bg;
+  background-color: var(--headline-bg);
   min-width: 29px;
 }
 .ff {

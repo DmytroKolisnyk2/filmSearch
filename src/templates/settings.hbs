@@ -18,10 +18,11 @@
       <h3 class="settings__caption">
         <i class="material-icons">palette</i>Theme
       </h3>
-      <select value='Default' class='settings__select' name="theme" id="theme">
+      <select class='settings__select' name="theme" id="theme">
         {{!-- <option value="" selected disabled hidden>Default</option> --}}
-        <option value="Dark">Dark</option>
-        <option value="Light">Light</option>
+        {{#each themes.value}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
       </select>
     </div>
 

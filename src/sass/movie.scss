@@ -70,7 +70,7 @@
   padding: 70px 45px;
 }
 .background__text {
-  color: $headline-white;
+  color: var(--headline-white);
   @extend %roboto-slab;
 }
 .info__home-page-link {
@@ -78,7 +78,7 @@
   // text-decoration: underline;
   transition: $linear-small;
   &:hover {
-    color: $aside-bg;
+    color: var(--aside-bg);
   }
 }
 .info__text {
@@ -123,19 +123,18 @@
   font-weight: 700;
   width: 55px;
   @extend %roboto-slab;
-  background-color: $rating-color;
+  background-color: var(--rating-color);
   border-radius: 5px;
-  color: $aside-bg;
+  color: var(--aside-bg);
 }
-.info__slider-wrapper{
+.info__slider-wrapper {
   position: relative;
   margin-bottom: -70px;
-
 }
-.info__custom-control{
+.info__custom-control {
   list-style: none;
 }
-.info__custom-control li{
+.info__custom-control li {
   position: absolute;
   z-index: 2;
   top: 50%;
@@ -143,33 +142,35 @@
   text-align: center;
   transform: translateY(-50%);
   color: white;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   padding: 13px 15px;
   border-radius: 50%;
   cursor: pointer;
   transition: $linear-small;
-  &:active{
+  &:active {
     // transform: scale(1.01);
   }
 }
-.info__custom-control li:hover{
+.info__custom-control li:hover {
   background: #000;
 }
-.info__custom-control .prev{
+.info__custom-control .prev {
   left: 20px;
 }
-.info__custom-control .next{
+.info__custom-control .next {
   right: 20px;
 }
-.info__headline{
+.info__headline {
   font-size: 18px;
 }
 .info__slider {
+  text-align: center;
+  display: flex;
   padding: 10px;
 }
-.info__slider .card{
+.info__slider .card {
   margin-right: 15px;
 }
-.info__trailer{
+.info__trailer {
   margin-bottom: 25px;
 }

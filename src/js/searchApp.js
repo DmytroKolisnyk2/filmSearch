@@ -119,7 +119,6 @@ export const renderPage = id => {
         const data = page;
         data.similar = similar.data;
         if (video.data.results[0])data.video = video.data.results[0].key;
-
         galleryRef.innerHTML = '';
         document.querySelector('.page-result').innerHTML = pageTmpl(addActiveBtnPage(data));
         document.querySelector('.page__menu').addEventListener('click', changeLikes);

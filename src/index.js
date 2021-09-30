@@ -7,16 +7,13 @@ import { changeLikes, changeWatchLaterList } from './js/addToList';
 import { openSettings } from './js/settingsModal';
 import { closeBar } from './js/openBar';
 import { changeAxiosLanguage, changeAxiosRegion } from './js/searchFilm';
-
-// changeAxiosLanguage('de');
-
-// language: 'en',
-//   region: 'US'
+import { changeTheme } from './js/changeStyle';
 
 localStorage.setItem('like-list', localStorage.getItem('like-list') || JSON.stringify([]));
 localStorage.setItem('watch-later', localStorage.getItem('watch-later') || JSON.stringify([]));
 localStorage.setItem('region', localStorage.getItem('region') || 'US');
 localStorage.setItem('language', localStorage.getItem('language') || 'en');
+localStorage.setItem('theme', localStorage.getItem('theme') || 'defaultTheme');
 
 changeAxiosLanguage(localStorage.getItem('language'));
 changeAxiosRegion(localStorage.getItem('region'));
@@ -60,5 +57,6 @@ document.querySelector('.controls__item[data-action="playingNow"').addEventListe
 renderPopular();
 renderPlayingNow();
 
-// openSettings();
 document.querySelector('.header__settings').addEventListener('click', openSettings);
+
+changeTheme(localStorage.getItem('theme'))

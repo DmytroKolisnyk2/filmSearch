@@ -3,7 +3,7 @@
   display: block;
   width: 100%;
   height: 4px;
-  background-color: $aside-bg;
+  background-color: var(--aside-bg);
   transition: $linear-small;
 }
 .header {
@@ -33,7 +33,7 @@
     display: none;
   }
   &--open {
-    background-color: $aside-bg;
+    background-color: var(--aside-bg);
     justify-content: center;
     & > .burger__part--1 {
       top: 4px;
@@ -47,13 +47,13 @@
       transform: rotate(-45deg);
     }
     & span {
-      background-color: $headline-white;
+      background-color: var(--headline-white);
     }
   }
   &:hover {
-    background-color: $aside-bg;
+    background-color: var(--aside-bg);
     & span {
-      background-color: $headline-white;
+      background-color: var(--headline-white);
     }
   }
 }
@@ -65,16 +65,16 @@
   font-size: 18px;
   background-color: #fff;
   border-radius: 10px;
-  border: $text-grey 3px solid;
-  // color: $text-grey;
+  border: var(--text-grey) 3px solid;
+  // color: var(--text-grey);
   transition: $linear-small;
   @extend %roboto-slab;
   &:focus {
     & + .header__icon {
-      color: $aside-bg;
+      color: var(--aside-bg);
       cursor: pointer;
     }
-    border-color: $aside-bg;
+    border-color: var(--aside-bg);
   }
   @media screen and (min-width: 1200px) {
     width: calc(100% - 65px);
@@ -83,7 +83,7 @@
 .header__icon {
   font-size: 30px;
   position: absolute;
-  color: $text-grey;
+  color: var(--text-grey);
   right: 120px;
   transition: $linear-small;
   @media screen and (min-width: 1200px) {
@@ -101,7 +101,7 @@
 }
 .header__settings {
   padding-top: 1px;
-  color: $aside-bg;
+  color: var(--aside-bg);
   height: 50px;
   width: 50px;
   text-align: center;
@@ -110,9 +110,10 @@
   cursor: pointer;
   padding: 5px;
   border-radius: 50%;
-  &:hover,:active{
-    background-color: $aside-bg;
-    color: $headline-white;
+  &:hover,
+  :active {
+    background-color: var(--aside-bg);
+    color: var(--headline-white);
     transform: rotate(90deg);
   }
 }

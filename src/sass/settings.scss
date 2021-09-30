@@ -2,11 +2,11 @@
   position: relative;
   z-index: 1000;
   width: 500px;
-  background-color: $aside-bg;
+  background-color: var(--aside-bg);
   border-radius: 8px;
   text-align: center;
   padding: 20px 15px 30px;
-  border: 3px solid $headline-bg;
+  border: 3px solid var(--headline-bg);
   @media screen and (max-width: 528px) {
     width: 320px;
   }
@@ -34,12 +34,12 @@
   @extend %roboto-slab;
   font-size: 20px;
   margin-bottom: 14px;
-  color: $headline-white;
+  color: var(--headline-white);
   & i {
     position: relative;
     top: 4px;
     right: 3px;
-    color: $rating-color;
+    color: var(--rating-color);
   }
   & > .material-icons--lang {
     right: 7px;
@@ -51,7 +51,7 @@
   @extend %roboto-slab;
   font-size: 25px;
   margin-bottom: 18px;
-  color: $headline-white;
+  color: var(--headline-white);
 }
 .settings__select {
   &--region {
@@ -68,7 +68,7 @@
   font-size: 16px;
   @extend %roboto-slab;
   font-weight: 600;
-  color: $aside-bg;
+  color: var(--aside-bg);
   line-height: 1.3;
   padding: 0.6em 1.4em 0.5em 0.8em;
   box-sizing: border-box;
@@ -79,7 +79,8 @@
   -webkit-appearance: none;
   appearance: none;
   background-color: #fff;
-  background-image: url("../images/arrow.png"), linear-gradient(to bottom, $headline-white 0%, $headline-white 100%);
+  background-image: url("../images/arrow.png"),
+    linear-gradient(to bottom, var(--headline-white) 0%, var(--headline-white) 100%);
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 55%, 0 0;
   background-size: 1.07em auto, 100%;

@@ -14,12 +14,12 @@
 
 .card-menu__btn {
   @extend %roboto-slab;
-  background-color: $rating-color;
+  background-color: var(--rating-color);
   height: 40px;
   width: 40px;
   font-size: 25px;
   border-radius: 5px;
-  color: $aside-bg;
+  color: var(--aside-bg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,7 +29,7 @@
   }
   &--liked {
     color: tomato;
-    background-color: $aside-bg;
+    background-color: var(--aside-bg);
     & .material-icons--1 {
       display: none;
     }
@@ -38,8 +38,8 @@
     }
   }
   &--later {
-    color: $headline-white;
-    background-color: $aside-bg;
+    color: var(--headline-white);
+    background-color: var(--aside-bg);
     & .material-icons--1 {
       display: none;
     }
@@ -48,7 +48,7 @@
     }
   }
   &:hover {
-    // background-color: $aside-bg;
+    // background-color: var(--aside-bg);
   }
   &:nth-child(4) {
     &:hover {
@@ -62,14 +62,14 @@
   }
   &:nth-child(2) {
     &:hover {
-      color: $headline-white;
+      color: var(--headline-white);
     }
   }
   &:nth-child(1) {
     cursor: text;
 
     &:hover {
-      background-color: $rating-color;
+      background-color: var(--rating-color);
     }
   }
 }
@@ -148,9 +148,9 @@
   padding: 10px 25px;
   @extend %roboto-slab;
   font-size: 28px;
-  color: $headline-white;
+  color: var(--headline-white);
   font-weight: 600;
-  background-color: $headline-bg;
+  background-color: var(--headline-bg);
   border-radius: 10px;
   max-width: 90%;
   bottom: 40px;
@@ -166,9 +166,9 @@
   text-align: center;
   @extend %roboto-slab;
   font-size: 28px;
-  color: $aside-bg;
+  color: var(--aside-bg);
   font-weight: 600;
-  background-color: $rating-color;
+  background-color: var(--rating-color);
   padding: 5px 10px;
   border-radius: 5px;
   cursor: text;

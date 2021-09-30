@@ -1,7 +1,7 @@
 import './sass/main.scss';
 import 'material-design-icons/iconfont/material-icons.css';
 import { openBar, closeOverlayBar } from './js/openBar';
-import { searchApp, renderPopular, renderPlayingNow, renderPage, renderUpcoming } from './js/searchApp';
+import { searchApp, renderPopular, renderPlayingNow, renderPage, renderUpcoming, renderFavorite } from './js/searchApp';
 import debounce from 'lodash.debounce';
 import { changeLikes, changeWatchLaterList } from './js/addToList';
 import { openSettings } from './js/settingsModal';
@@ -48,6 +48,10 @@ document.querySelector('.controls__item[data-action="upcoming"').addEventListene
 document.querySelector('.controls__item[data-action="playingNow"').addEventListener('click', () => {
 	closeBar();
 	renderPlayingNow();
+});
+document.querySelector('.controls__item[data-action="favorite"').addEventListener('click', () => {
+	closeBar();
+	renderFavorite(JSON.parse(localStorage.getItem('like-list')));
 });
 renderPopular();
 renderPlayingNow();

@@ -171,3 +171,19 @@ export const renderUpcoming = () => {
     .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
 
 };
+
+export const renderFavorite = (data) => {
+  let results = [];
+  let result = {};
+  for(let i of data){
+    pageRequest(i).then((data) => {
+      results.push(data);
+      // galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
+    })
+      .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
+  }
+  result.results = results;
+  galleryRef.innerHTML = cardTmpl(result);
+  console.log(result);
+};
+

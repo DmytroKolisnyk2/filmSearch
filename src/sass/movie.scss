@@ -75,7 +75,7 @@
 }
 .info__home-page-link {
   text-decoration: underline;
-  color: var(--aside-bg);
+  color: var(--text-color);
   // text-decoration: underline;
   transition: $linear-small;
   &:hover {
@@ -86,9 +86,9 @@
   @extend %roboto-slab;
   font-size: 19px;
   margin-bottom: 20px;
-  color: var(--aside-bg);
+  color: var(--text-color);
   & span {
-    color: var(--headline-bg);
+    color: var(--text-color-dark);
     font-size: 21px;
     font-weight: 600;
     margin-right: 3px;

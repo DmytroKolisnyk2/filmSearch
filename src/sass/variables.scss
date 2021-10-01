@@ -1,18 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700;800&display=swap");
 
-:root{
-  --headline-white: #FEFFF1;
+:root {
+  --headline-white: #fefff1;
   --aside-bg: #4c4145;
   --headline-bg: #3a2f33;
-  --text-grey: #C7C7C7;
+  --text-grey: #c7c7c7;
   --rating-color: #fcd46b;
-  --main-color:#ededed;
-  --gear-bg:#4c4145;
-
+  --main-color: #ededed;
+  --gear-bg: #4c4145;
+  --gear-inner:#c7c7c7;
+  --text-color-dark: #3a2f33;
+  --text-color: #4c4145;
 }
 
-  $linear-small: 200ms linear;
-  $bar-width: 350px;
+$linear-small: 200ms linear;
+$bar-width: 350px;
 
 $main-sticky: 300ms cubic-bezier(0.36, 0.12, 0.46, 1.92);
 

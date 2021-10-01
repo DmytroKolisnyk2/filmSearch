@@ -3,7 +3,7 @@
   display: block;
   width: 100%;
   height: 4px;
-  background-color: $aside-bg;
+  background-color: var(--gear-bg);
   transition: $linear-small;
 }
 .header {
@@ -33,7 +33,7 @@
     display: none;
   }
   &--open {
-    background-color: $aside-bg;
+    background-color: var(--gear-bg);
     justify-content: center;
     & > .burger__part--1 {
       top: 4px;
@@ -47,45 +47,73 @@
       transform: rotate(-45deg);
     }
     & span {
-      background-color: $headline-white;
+      background-color: var(--gear-inner);
     }
   }
   &:hover {
-    background-color: $aside-bg;
+    background-color: var(--gear-bg);
     & span {
-      background-color: $headline-white;
+      background-color: var(--gear-inner);
     }
   }
 }
 .header__search {
-  width: calc(100% - 80px);
+  width: calc(100% - 110px);
   height: 40px;
   padding: 8px;
+  padding-right: 35px;
   font-size: 18px;
   background-color: #fff;
   border-radius: 10px;
-  border: $text-grey 3px solid;
-  // color: $text-grey;
+  border: var(--text-grey) 3px solid;
+  // color: var(--text-grey);
   transition: $linear-small;
   @extend %roboto-slab;
   &:focus {
     & + .header__icon {
-      color: $aside-bg;
+      color: var(--aside-bg);
       cursor: pointer;
     }
-    border-color: $aside-bg;
+    border-color: var(--aside-bg);
   }
   @media screen and (min-width: 1200px) {
-    width: calc(100% - 20px);
+    width: calc(100% - 65px);
   }
 }
 .header__icon {
   font-size: 30px;
   position: absolute;
-  color: $text-grey;
-  right: 82px;
+  color: var(--text-grey);
+  right: 120px;
   transition: $linear-small;
   @media screen and (min-width: 1200px) {
-    right: 20px;
+    right: 76px;
+  }
+}
+.header__controls-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 98px;
+  @media screen and (min-width: 1200px) {
+    width: 52px;
+  }
+}
+.header__settings {
+  padding-top: 1px;
+  color: var(--gear-bg);
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  font-size: 40px !important;
+  transition: $linear-small;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  &:hover,
+  :active {
+    background-color: var(--gear-bg);
+    color: var(--gear-inner);
+    transform: rotate(90deg);
   }
 }

@@ -40,17 +40,75 @@
 	<p class="info__text">
 		<span>Home page: </span>
 		<a href="{{data.homepage}}" class="info__home-page-link">{{data.homepage}}</a>
+		{{#unless data.homepage}}
+		no information found
+		{{/unless}}
 	</p>
 	<p class="info__text">
 		<span>Summary:</span>
 		{{data.overview}}
+		{{#unless data.overview}}
+		no information found
+		{{/unless}}
 	</p>
-	{{#if data.video}}
-	<iframe class="info__trailer" width="947" height="539" src="{{data.video}}" title="YouTube video player"
-		frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-		allowfullscreen></iframe>
-	{{/if}}
-	{{#unless data.video}}
+	<p class="info__text">
+		<span>Trailer:</span>
+	</p>
+	<div>
+		{{!-- {{#if data.video}} --}}
+		{{!-- <iframe class="info__trailer" width="947" height="539"
+			src="https://www.youtube.com/embed/{{video}}?autoplay=0" title="YouTube video player" frameborder="0"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
+		</iframe> --}}
+		{{!-- {{/if}} --}}
+		{{#if video}}
+		<iframe class="info__trailer" width="947" height="539" src="https://www.youtube.com/embed/{{video}}?autoplay=0"
+			title="YouTube video player" frameborder="0"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
+		</iframe>
+		{{/if}}
+		{{#unless video}}
+		<div class="info__trailer info__trailer--no-video">
+			<img width="350" height="500" alt="no-video" class="card__img" src="./images/no-video.png" />
+		</div>
+		{{/unless}}
+	</div>
+	{{#if similar.results}}
 
-	{{/unless}}
+	<p class="info__text">
+		<span>Similar films:</span>
+	</p>
+
+	<div class="info__slider-wrapper">
+		<ul class="info__custom-control">
+			<li class="prev">
+				<i class="material-icons">chevron_left</i>
+			</li>
+			<li class="next">
+				<i class="material-icons">chevron_right</i>
+			</li>
+		</ul>
+		<div class="info__slider">
+			{{#each similar.results}}
+			<div height='350' data-id="{{this.id}}" class="card">
+				<div class="card__img-wrapper">
+					{{#if this.poster_path}}
+					<img width="350" height="400" class="card__img" src="https://image.tmdb.org/t/p/w500{{this.poster_path}}" />
+					{{/if}}
+					{{#unless this.poster_path}}
+					<img width="350" height="400" alt="no-poster" class="card__img" src="./images/no-poster.png" />
+					{{/unless}}
+				</div>
+				<div data-id="{{this.id}}" class="card__menu-wrapper">
+					<div data-tippy-content="Country" class="card__lang">{{this.original_language}}</div>
+					<h2 class="info__headline card__headline">{{this.title}}</h2>
+				</div>
+			</div>
+			{{/each}}
+		</div>
+	</div>
+	{{/if}}
 	</section>
+	{{!-- <iframe width="1908" height="801" src="https://www.youtube.com/embed/ObFqp3yTwjQ" title="YouTube video player"
+		frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen></iframe> --}}

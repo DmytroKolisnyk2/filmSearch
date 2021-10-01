@@ -1,11 +1,11 @@
 {{#each results}}
-<div data-id="{{this.id}}" class="card">
+<div height='500' data-id="{{this.id}}" class="card">
   <div class="card__img-wrapper">
     {{#if this.poster_path}}
-    <img width="350" height="400" class="card__img" src="https://image.tmdb.org/t/p/w500{{this.poster_path}}" />
+    <img width="350" height="500" class="card__img" src="https://image.tmdb.org/t/p/w500{{this.poster_path}}" />
     {{/if}}
     {{#unless this.poster_path}}
-    <img width="350" height="400" alt="no-poster" class="card__img" src="./images/no-poster.png" />
+    <img width="350" height="500" alt="no-poster" class="card__img" src="./images/no-poster.png" />
     {{/unless}}
   </div>
   <div data-id="{{this.id}}" class="card__menu-wrapper">
@@ -24,7 +24,7 @@
         <i class="material-icons material-icons--2">favorite</i>
       </button>
       <button data-id="{{this.id}}" data-tippy-content="Info" type="button" class="card-menu__btn">
-        <i class="material-icons">info</i>
+        <i data-id="{{this.id}}" class="material-icons">info</i>
       </button>
     </div>
     <h2 class="card__headline">{{this.title}}</h2>

@@ -22,12 +22,16 @@
 }
 .background__img-wrapper {
   // width: 200px;
+  flex-shrink: 0;
   border-radius: 10px;
   overflow: hidden;
   margin-right: 35px;
   -webkit-box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
   -moz-box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
   box-shadow: 7px 5px 10px 9px rgba(255, 255, 255, 0.15);
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 .background__tagline {
   margin-bottom: 10px;
@@ -66,23 +70,25 @@
   padding: 70px 45px;
 }
 .background__text {
-  color: $headline-white;
+  color: rgba(255, 255, 255, 0.925);
   @extend %roboto-slab;
 }
 .info__home-page-link {
-  color: #666;
+  text-decoration: underline;
+  color: var(--text-color);
   // text-decoration: underline;
   transition: $linear-small;
   &:hover {
-    color: $aside-bg;
+    color: var(--headline-bg);
   }
 }
 .info__text {
   @extend %roboto-slab;
   font-size: 19px;
   margin-bottom: 20px;
-  color: #333;
+  color: var(--text-color);
   & span {
+    color: var(--text-color-dark);
     font-size: 21px;
     font-weight: 600;
     margin-right: 3px;
@@ -90,6 +96,10 @@
 }
 .info__trailer {
   width: 100%;
+  &--no-video {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 }
 .page__icon {
   cursor: pointer;
@@ -119,8 +129,54 @@
   font-weight: 700;
   width: 55px;
   @extend %roboto-slab;
-  background-color: $rating-color;
+  background-color: var(--rating-color);
   border-radius: 5px;
-  color: $aside-bg;
-
+  color: var(--aside-bg);
+}
+.info__slider-wrapper {
+  position: relative;
+  margin-bottom: -70px;
+}
+.info__custom-control {
+  list-style: none;
+}
+.info__custom-control li {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  line-height: 0;
+  text-align: center;
+  transform: translateY(-50%);
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 13px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: $linear-small;
+  &:active {
+    // transform: scale(1.01);
+  }
+}
+.info__custom-control li:hover {
+  background: #000;
+}
+.info__custom-control .prev {
+  left: 20px;
+}
+.info__custom-control .next {
+  right: 20px;
+}
+.info__headline {
+  font-size: 18px;
+}
+.info__slider {
+  text-align: center;
+  display: flex;
+  padding: 10px;
+}
+.info__slider .card {
+  margin-right: 15px;
+}
+.info__trailer {
+  margin-bottom: 25px;
 }

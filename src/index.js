@@ -6,9 +6,17 @@ import debounce from 'lodash.debounce';
 import { changeLikes, changeWatchLaterList } from './js/addToList';
 import { openSettings } from './js/settingsModal';
 import { closeBar } from './js/openBar';
+import { changeAxiosLanguage, changeAxiosRegion } from './js/searchFilm';
+import { changeTheme } from './js/changeStyle';
 
 localStorage.setItem('like-list', localStorage.getItem('like-list') || JSON.stringify([]));
 localStorage.setItem('watch-later', localStorage.getItem('watch-later') || JSON.stringify([]));
+localStorage.setItem('region', localStorage.getItem('region') || 'US');
+localStorage.setItem('language', localStorage.getItem('language') || 'en');
+localStorage.setItem('theme', localStorage.getItem('theme') || 'defaultTheme');
+
+changeAxiosLanguage(localStorage.getItem('language'));
+changeAxiosRegion(localStorage.getItem('region'));
 
 const galleryRef = document.querySelector('.search-result__card-container');
 galleryRef.addEventListener('click', changeLikes);
@@ -23,9 +31,6 @@ burgerRef.addEventListener('click', openBar);
 const inputRef = document.querySelector('.header__search');
 inputRef.addEventListener('input', debounce(() => searchApp.searchPhoto.apply(searchApp), 500));
 
-const observeRef = document.querySelector('#observe');
-const observer = new IntersectionObserver(searchApp.updatePhotos.bind(searchApp, observeRef));
-observer.observe(observeRef);
 
 document.querySelector('.search-result__card-container').addEventListener('click', (event) => {
   let target = event.target;
@@ -42,12 +47,12 @@ document.querySelector('.best-movies__list').addEventListener('click', (event) =
 
 document.querySelector('.aside__overlay').addEventListener('click', closeOverlayBar);
 document.querySelector('.controls__item[data-action="upcoming"').addEventListener('click', ('click', () => {
-	closeBar();
-	renderUpcoming();
+  closeBar();
+  renderUpcoming();
 }));
 document.querySelector('.controls__item[data-action="playingNow"').addEventListener('click', () => {
-	closeBar();
-	renderPlayingNow();
+  closeBar();
+  renderPlayingNow();
 });
 document.querySelector('.controls__item[data-action="favorite"').addEventListener('click', () => {
 	closeBar();
@@ -60,4 +65,6 @@ document.querySelector('.controls__item[data-action="playlist"').addEventListene
 renderPopular();
 renderPlayingNow();
 
-// openSettings();
+document.querySelector('.header__settings').addEventListener('click', openSettings);
+
+changeTheme(localStorage.getItem('theme'))

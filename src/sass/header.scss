@@ -101,7 +101,7 @@
 }
 .header__settings {
   padding-top: 1px;
-  color: var(--aside-bg);
+  color: var(--gear-bg);
   height: 50px;
   width: 50px;
   text-align: center;
@@ -112,7 +112,7 @@
   border-radius: 50%;
   &:hover,
   :active {
-    background-color: var(--aside-bg);
+    background-color: var(--gear-bg);
     color: var(--headline-white);
     transform: rotate(90deg);
   }

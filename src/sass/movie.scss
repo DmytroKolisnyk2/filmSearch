@@ -70,23 +70,25 @@
   padding: 70px 45px;
 }
 .background__text {
-  color: var(--headline-white);
+  color: rgba(255, 255, 255, 0.925);
   @extend %roboto-slab;
 }
 .info__home-page-link {
-  color: #666;
+  text-decoration: underline;
+  color: var(--aside-bg);
   // text-decoration: underline;
   transition: $linear-small;
   &:hover {
-    color: var(--aside-bg);
+    color: var(--headline-bg);
   }
 }
 .info__text {
   @extend %roboto-slab;
   font-size: 19px;
   margin-bottom: 20px;
-  color: #333;
+  color: var(--aside-bg);
   & span {
+    color: var(--headline-bg);
     font-size: 21px;
     font-weight: 600;
     margin-right: 3px;
@@ -94,6 +96,10 @@
 }
 .info__trailer {
   width: 100%;
+  &--no-video {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 }
 .page__icon {
   cursor: pointer;

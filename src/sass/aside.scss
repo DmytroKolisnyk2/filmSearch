@@ -71,6 +71,7 @@
   // height: calc(100vh - 218px);
 }
 .best-movies__rating {
+  color: var(--aside-bg);
   background-color: var(--rating-color);
   width: 36px;
   text-align: center;

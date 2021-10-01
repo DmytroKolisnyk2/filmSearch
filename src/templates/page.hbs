@@ -40,21 +40,38 @@
 	<p class="info__text">
 		<span>Home page: </span>
 		<a href="{{data.homepage}}" class="info__home-page-link">{{data.homepage}}</a>
+		{{#unless data.homepage}}
+		no information found
+		{{/unless}}
 	</p>
 	<p class="info__text">
 		<span>Summary:</span>
 		{{data.overview}}
+		{{#unless data.overview}}
+		no information found
+		{{/unless}}
 	</p>
 	<p class="info__text">
 		<span>Trailer:</span>
 	</p>
 	<div>
 		{{!-- {{#if data.video}} --}}
+		{{!-- <iframe class="info__trailer" width="947" height="539"
+			src="https://www.youtube.com/embed/{{video}}?autoplay=0" title="YouTube video player" frameborder="0"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
+		</iframe> --}}
+		{{!-- {{/if}} --}}
+		{{#if video}}
 		<iframe class="info__trailer" width="947" height="539" src="https://www.youtube.com/embed/{{video}}?autoplay=0"
 			title="YouTube video player" frameborder="0"
 			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
 		</iframe>
-		{{!-- {{/if}} --}}
+		{{/if}}
+		{{#unless video}}
+		<div class="info__trailer info__trailer--no-video">
+			<img width="350" height="500" alt="no-video" class="card__img" src="./images/no-video.png" />
+		</div>
+		{{/unless}}
 	</div>
 	{{#if similar.results}}
 

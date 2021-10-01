@@ -6,6 +6,7 @@ export const themeStyles = {
     '--headline-bg': '#3a2f33',
     '--text-grey': '#C7C7C7',
     '--rating-color': '#fcd46b',
+    '--main-color':'#ededed'
   },
   greenTheme: {
     // name: 'green',
@@ -14,6 +15,7 @@ export const themeStyles = {
     '--headline-bg': '#6e9a44',
     '--text-grey': '#023026',
     '--rating-color': '#3d9690',
+    '--main-color':'#ededed'
   },
   pinkTheme: {
     // name: 'pink',
@@ -22,6 +24,7 @@ export const themeStyles = {
     '--headline-bg': '#715f65',
     '--text-grey': '#023026',
     '--rating-color': '#fcd46b',
+    '--main-color':'#ededed'
   },
   pinkGreenTheme: {
     // name: 'pink-green',
@@ -30,14 +33,24 @@ export const themeStyles = {
     '--headline-bg': '#025b0e',
     '--text-grey': '#023026',
     '--rating-color': '#fd7c84',
+    '--main-color':'#ededed'
   },
   yellowTheme: {
     // name: 'yellow',
-    '--headline-white': '#023026',
-    '--aside-bg': '#ddce6e',
-    '--headline-bg': '#e9cb31',
-    '--text-grey': '#023026',
-    '--rating-color': '#676778',
+    '--headline-white': '#444444',
+    '--aside-bg': '#fcd46b',
+    '--headline-bg': '#ddce6e',
+    '--text-grey': '#676778',
+    '--rating-color': '#272933',
+    '--main-color': '#d9d9c2'
+  }, darkTheme: {
+    // name: 'yellow',
+    '--headline-white': '#dcdcdc',
+    '--aside-bg': '#777',
+    '--headline-bg': '#606060',
+    '--text-grey': '#bbb',
+    '--rating-color': '#fcd46b',
+    '--main-color': '#333333'
   },
 };
 

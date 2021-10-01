@@ -1,6 +1,7 @@
 import cardTmpl from '../templates/searchCard.hbs';
 import asideListTmpl from '../templates/asideList.hbs';
 import pageTmpl from '../templates/page.hbs';
+import favTmpl from '../templates/favorite.hbs';
 import { error, info } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
@@ -93,7 +94,6 @@ export const searchApp = {
   }
 }
 export const renderPlayingNow = () => {
-
   document.querySelector('.page-result').innerHTML = '';
 
   playingNowRequest().then(({ data }) => {
@@ -161,6 +161,7 @@ export const renderPage = (id) => {
 
 };
 export const renderUpcoming = () => {
+  document.querySelector('.page-result').innerHTML = "";
   upcomingRequest().then(({ data }) => {
     galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
     if (data.results.length === 0) {
@@ -172,18 +173,26 @@ export const renderUpcoming = () => {
 
 };
 
-export const renderFavorite = (data) => {
+export async function renderFavorite (data) {
   let results = [];
   let result = {};
-  for(let i of data){
-    pageRequest(i).then((data) => {
-      results.push(data);
-      // galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
-    })
+  for (let i of data){
+    await pageRequest(i).then((data) => {results.push(data)})
       .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
   }
   result.results = results;
-  galleryRef.innerHTML = cardTmpl(result);
-  console.log(result);
+  observeRef.classList.add('observe--hidden');
+  galleryRef.innerHTML = favTmpl(addActiveBtn(result));
+};
+export async function renderPlaylist (data) {
+  let results = [];
+  let result = {};
+  for (let i of data){
+    await pageRequest(i).then((data) => {results.push(data)})
+      .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
+  }
+  result.results = results;
+  observeRef.classList.add('observe--hidden');
+  galleryRef.innerHTML = favTmpl(addActiveBtn(result));
 };
 

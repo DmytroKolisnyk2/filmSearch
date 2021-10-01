@@ -1,0 +1,33 @@
+{{#each results}}
+<div data-id="{{data.id}}" class="card">
+  <div class="card__img-wrapper">
+    {{#if data.poster_path}}
+    <img width="350" height="400" class="card__img" src="https://image.tmdb.org/t/p/w500{{data.poster_path}}" />
+    {{/if}}
+    {{#unless data.poster_path}}
+    <img width="350" height="400" alt="no-poster" class="card__img" src="./images/no-poster.png" />
+    {{/unless}}
+  </div>
+  <div data-id="{{data.id}}" class="card__menu-wrapper">
+    <div data-tippy-content="Country" class="card__lang">{{data.original_language}}</div>
+    <div data-id="{{data.id}}" class="card__menu">
+      <span data-tippy-content="Rating" type="button"
+        class="card-menu__btn card-menu__rating">{{data.vote_average}}</span>
+      <button data-tippy-content="Add to watch later" data-action="watch-later" type="button"
+        class="card-menu__btn card-menu__btn--watch-later {{#if data.watchLater}}card-menu__btn--later{{/if}}">
+        <i class="material-icons material-icons--1">playlist_add</i>
+        <i class="material-icons material-icons--2">playlist_add_check</i>
+      </button>
+      <button data-tippy-content="Like" data-action="like" type="button"
+        class="card-menu__btn card-menu__btn--like {{#if data.liked}}card-menu__btn--liked{{/if}}">
+        <i class="material-icons material-icons--1">favorite_border</i>
+        <i class="material-icons material-icons--2">favorite</i>
+      </button>
+      <button data-id="{{data.id}}" data-tippy-content="Info" type="button" class="card-menu__btn">
+        <i class="material-icons">info</i>
+      </button>
+    </div>
+    <h2 class="card__headline">{{data.title}}</h2>
+  </div>
+</div>
+{{/each}}

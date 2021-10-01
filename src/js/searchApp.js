@@ -1,6 +1,7 @@
 import cardTmpl from '../templates/searchCard.hbs';
 import asideListTmpl from '../templates/asideList.hbs';
 import pageTmpl from '../templates/page.hbs';
+import favTmpl from '../templates/favorite.hbs';
 import { error, info } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
@@ -107,6 +108,12 @@ export const searchApp = {
   },
 };
 
+// <<<<<<< upcoming
+  }
+}
+export const renderPlayingNow = () => {
+  document.querySelector('.page-result').innerHTML = '';
+// =======
 export const renderPage = id => {
   try {
     showLoader();
@@ -155,6 +162,7 @@ export const renderPage = id => {
     error({ text: 'Oops something went wrong', delay: 1000 });
   }
 };
+// >>>>>>> master
 
 export const renderPopular = () => {
   popularRequest()
@@ -213,5 +221,44 @@ const showLoader = () => {
   observer.unobserve(observeRef);
   document.querySelector('.page-result').innerHTML = '';
 };
+// <<<<<<< upcoming
+export const renderUpcoming = () => {
+  document.querySelector('.page-result').innerHTML = "";
+  upcomingRequest().then(({ data }) => {
+    galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
+    if (data.results.length === 0) {
+      error({ text: 'Popular films not found', delay: 700 });
+      return;
+    };
+  })
+    .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
+
+};
+
+export async function renderFavorite (data) {
+  let results = [];
+  let result = {};
+  for (let i of data){
+    await pageRequest(i).then((data) => {results.push(data)})
+      .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
+  }
+  result.results = results;
+  observeRef.classList.add('observe--hidden');
+  galleryRef.innerHTML = favTmpl(addActiveBtn(result));
+};
+export async function renderPlaylist (data) {
+  let results = [];
+  let result = {};
+  for (let i of data){
+    await pageRequest(i).then((data) => {results.push(data)})
+      .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
+  }
+  result.results = results;
+  observeRef.classList.add('observe--hidden');
+  galleryRef.innerHTML = favTmpl(addActiveBtn(result));
+};
+
+// =======
 
 const observer = new IntersectionObserver(searchApp.updatePhotos.bind(searchApp, observeRef));
+// >>>>>>> master

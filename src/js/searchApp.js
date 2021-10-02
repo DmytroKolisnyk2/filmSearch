@@ -53,7 +53,6 @@ export const searchApp = {
           return;
         }
 
-        // const observeRef = document.querySelector('#observe');
         observer.observe(observeRef);
         setTimeout(() => this.restartObserver(), 500);
       })
@@ -108,12 +107,6 @@ export const searchApp = {
   },
 };
 
-// <<<<<<< upcoming
-  }
-}
-export const renderPlayingNow = () => {
-  document.querySelector('.page-result').innerHTML = '';
-// =======
 export const renderPage = id => {
   try {
     showLoader();
@@ -125,15 +118,15 @@ export const renderPage = id => {
       Promise.all([page, similar, video]).then(res => {
         const data = page;
         data.similar = similar.data;
-        if (video.data.results[0])data.video = video.data.results[0].key;
+        if (video.data.results[0]) data.video = video.data.results[0].key;
         galleryRef.innerHTML = '';
         document.querySelector('.page-result').innerHTML = pageTmpl(addActiveBtnPage(data));
         document.querySelector('.page__menu').addEventListener('click', changeLikes);
         document.querySelector('.page__menu').addEventListener('click', changeWatchLaterList);
         observeRef.classList.add('observe--hidden');
-        document.querySelector('.info__slider').addEventListener('click', (event) => {
+        document.querySelector('.info__slider').addEventListener('click', event => {
           let target = event.target;
-          console.log(target.dataset.id)
+          console.log(target.dataset.id);
           if (!target.dataset.id) return;
           renderPage(target.dataset.id);
         });
@@ -162,7 +155,6 @@ export const renderPage = id => {
     error({ text: 'Oops something went wrong', delay: 1000 });
   }
 };
-// >>>>>>> master
 
 export const renderPopular = () => {
   popularRequest()
@@ -199,6 +191,7 @@ export const renderUpcoming = () => {
     .then(({ data }) => {
       galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
       observeRef.classList.add('observe--hidden');
+      addTippy();
       if (data.results.length === 0) {
         error({ text: 'Popular films not found', delay: 700 });
         return;
@@ -221,44 +214,39 @@ const showLoader = () => {
   observer.unobserve(observeRef);
   document.querySelector('.page-result').innerHTML = '';
 };
-// <<<<<<< upcoming
-export const renderUpcoming = () => {
-  document.querySelector('.page-result').innerHTML = "";
-  upcomingRequest().then(({ data }) => {
-    galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
-    if (data.results.length === 0) {
-      error({ text: 'Popular films not found', delay: 700 });
-      return;
-    };
-  })
-    .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
 
-};
-
-export async function renderFavorite (data) {
+export async function renderFavorite(data) {
   let results = [];
   let result = {};
-  for (let i of data){
-    await pageRequest(i).then((data) => {results.push(data)})
+  showLoader();
+  for (let i of data) {
+    await pageRequest(i)
+      .then(data => {
+        results.push(data);
+      })
       .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
   }
   result.results = results;
   observeRef.classList.add('observe--hidden');
   galleryRef.innerHTML = favTmpl(addActiveBtn(result));
-};
-export async function renderPlaylist (data) {
+  addTippy();
+}
+
+export async function renderPlaylist(data) {
   let results = [];
   let result = {};
-  for (let i of data){
-    await pageRequest(i).then((data) => {results.push(data)})
+  showLoader();
+  for (let i of data) {
+    await pageRequest(i)
+      .then(data => {
+        results.push(data);
+      })
       .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
   }
   result.results = results;
   observeRef.classList.add('observe--hidden');
   galleryRef.innerHTML = favTmpl(addActiveBtn(result));
-};
-
-// =======
+  addTippy();
+}
 
 const observer = new IntersectionObserver(searchApp.updatePhotos.bind(searchApp, observeRef));
-// >>>>>>> master

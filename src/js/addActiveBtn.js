@@ -16,3 +16,27 @@ export const addActiveBtnPage = data => {
   data.watchLater = watchLaterList.includes(JSON.stringify(data.data.id));
   return data;
 };
+
+export const addActiveBtnFavorite = data => {
+  const likeList = JSON.parse(localStorage.getItem('like-list'));
+  const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
+  const { results } = data;
+  results.map(element => {
+    element.favoriteList = true;
+    element.data.liked = likeList.includes(JSON.stringify(element.data.id));
+    element.data.watchLater = watchLaterList.includes(JSON.stringify(element.data.id));
+  });
+  return data;
+};
+
+export const addActiveBtnWatchLater = data => {
+  const likeList = JSON.parse(localStorage.getItem('like-list'));
+  const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
+  const { results } = data;
+  results.map(element => {
+    element.watchLaterList = true;
+    element.data.liked = likeList.includes(JSON.stringify(element.data.id));
+    element.data.watchLater = watchLaterList.includes(JSON.stringify(element.data.id));
+  });
+  return data;
+};

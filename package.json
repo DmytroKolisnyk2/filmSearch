@@ -33,6 +33,7 @@
   "dependencies": {
     "basiclightbox": "^5.0.4",
     "material-design-icons": "^3.0.1",
+    "p": "^0.2.0",
     "tiny-slider": "^2.9.3"
   }
 }

@@ -21,7 +21,12 @@ import 'tippy.js/animations/shift-away.css';
 import { changeLikes, changeWatchLaterList } from './addToList';
 import { tns } from 'tiny-slider/src/tiny-slider';
 import 'tiny-slider/src/tiny-slider.scss';
-import { addActiveBtn, addActiveBtnPage } from './addActiveBtn.js';
+import {
+  addActiveBtn,
+  addActiveBtnPage,
+  addActiveBtnFavorite,
+  addActiveBtnWatchLater,
+} from './addActiveBtn.js';
 
 const inputRef = document.querySelector('.header__search');
 const galleryRef = document.querySelector('.search-result__card-container');
@@ -228,7 +233,7 @@ export async function renderFavorite(data) {
   }
   result.results = results;
   observeRef.classList.add('observe--hidden');
-  galleryRef.innerHTML = favTmpl(addActiveBtn(result));
+  galleryRef.innerHTML = favTmpl(addActiveBtnFavorite(result));
   addTippy();
 }
 
@@ -245,7 +250,10 @@ export async function renderPlaylist(data) {
   }
   result.results = results;
   observeRef.classList.add('observe--hidden');
-  galleryRef.innerHTML = favTmpl(addActiveBtn(result));
+  galleryRef.innerHTML = favTmpl(addActiveBtnWatchLater(result));
+  console.log(result.results[0].liked);
+  console.log(result);
+
   addTippy();
 }
 

@@ -1,3 +1,7 @@
+import { info } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
+
 const addToLiked = (likeList, ID) => {
   if (likeList.includes(ID)) return;
   likeList.push(ID);
@@ -40,6 +44,7 @@ export const changeLikes = event => {
   if (btn.classList.contains('card-menu__btn--liked')) {
     addToLiked(likeList, ID);
   } else {
+    removeFromContainer(btn);
     removeFromLicked(likeList, ID);
   }
 };
@@ -50,9 +55,18 @@ export const changeWatchLaterList = event => {
   btn.classList.toggle('card-menu__btn--later');
   const ID = btn.parentNode.dataset.id;
   const likeList = JSON.parse(localStorage.getItem('watch-later'));
+  console.log(btn.dataset.inList);
   if (btn.classList.contains('card-menu__btn--later')) {
     addToWatchLater(likeList, ID);
   } else {
+    removeFromContainer(btn);
     removeFromWatchLater(likeList, ID);
   }
+};
+
+const removeFromContainer = btn => {
+  if (btn.dataset.inList) {
+    btn.parentNode.parentNode.parentNode.remove();
+    info({ text: 'Film was removed from list', delay: 600 });
+  };
 };

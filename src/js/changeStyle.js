@@ -1,5 +1,5 @@
 export const themeStyles = {
-  'Default theme': {
+  'Brown theme': {
     '--headline-white': '#FEFFF1',
     '--aside-bg': '#4c4145',
     '--headline-bg': '#3a2f33',
@@ -55,7 +55,7 @@ export const themeStyles = {
     '--rating-color': '#715f65',
     '--main-color': '#fee2e3',
     '--gear-inner': '#FEFFF1',
-    '--gear-bg': '#BFB9CF',
+    '--gear-bg': '#715f65',
     '--text-color-dark': '#3a2f33',
     '--text-color': '#4c4145',
   },

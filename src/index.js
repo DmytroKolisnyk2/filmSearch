@@ -13,7 +13,7 @@ localStorage.setItem('like-list', localStorage.getItem('like-list') || JSON.stri
 localStorage.setItem('watch-later', localStorage.getItem('watch-later') || JSON.stringify([]));
 localStorage.setItem('region', localStorage.getItem('region') || 'US');
 localStorage.setItem('language', localStorage.getItem('language') || 'en');
-localStorage.setItem('theme', localStorage.getItem('theme') || 'defaultTheme');
+localStorage.setItem('theme', localStorage.getItem('theme') || 'Brown theme');
 
 changeAxiosLanguage(localStorage.getItem('language'));
 changeAxiosRegion(localStorage.getItem('region'));
@@ -68,3 +68,5 @@ renderPlayingNow();
 document.querySelector('.header__settings').addEventListener('click', openSettings);
 
 changeTheme(localStorage.getItem('theme'))
+
+renderPlaylist(JSON.parse(localStorage.getItem('watch-later')));

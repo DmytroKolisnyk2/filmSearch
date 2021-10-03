@@ -68,5 +68,3 @@ renderPlayingNow();
 document.querySelector('.header__settings').addEventListener('click', openSettings);
 
 changeTheme(localStorage.getItem('theme'))
-
-renderPlaylist(JSON.parse(localStorage.getItem('watch-later')));

@@ -31,7 +31,6 @@ export const searchApp = {
     observeRef.classList.remove('observe--hidden');
     queryRequest(inputRef.value, this.page)
       .then(({ data }) => {
-        console.log(data);
         galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
         if (data.total_pages === 1) {
           this.hideObserver();
@@ -64,7 +63,6 @@ export const searchApp = {
           return;
         }
         galleryRef.insertAdjacentHTML('beforeend', cardTmpl(addActiveBtn(data)));
-        console.log(addActiveBtn(data));
         this.last.nextElementSibling.lastElementChild.scrollIntoView({
           behavior: 'smooth',
           block: 'end',
@@ -144,12 +142,14 @@ const addActiveBtnPage = (data) => {
     theme: 'light-border',
     animation: 'shift-away'
   });
-  console.log(data.watchLater)
-  return data
+  return data;
 };
 
 export const renderPage = (id) => {
-  document.querySelector('.title').remove();
+  document.querySelector('.page-result').innerHTML = '';
+  if (document.querySelector('.title')) {
+    document.querySelector('.title').remove();
+  }
   observeRef.classList.add('observe--hidden');
   pageRequest(id).then((data) => {
     galleryRef.innerHTML = '';
@@ -162,8 +162,10 @@ export const renderPage = (id) => {
 };
 export const renderUpcoming = () => {
   document.querySelector('.page-result').innerHTML = "";
-  upcomingRequest().then(({ data }) => {
+  if (document.querySelector('.title')) {
     document.querySelector('.title').remove();
+  }
+  upcomingRequest().then(({ data }) => {
     document.querySelector('.search-result').insertAdjacentHTML("afterbegin", `<h2 class="title">Coming soon</h2>`);
     galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
     if (data.results.length === 0) {
@@ -176,9 +178,12 @@ export const renderUpcoming = () => {
 };
 
 export async function renderFavorite (data) {
+  document.querySelector('.page-result').innerHTML = '';
+  if (document.querySelector('.title')) {
+    document.querySelector('.title').remove();
+  }
   let results = [];
   let result = {};
-  document.querySelector('.title').remove();
   document.querySelector('.search-result').insertAdjacentHTML("afterbegin", `<h2 class="title">Favorite movies</h2>`);
   for (let i of data){
     await pageRequest(i).then((data) => {results.push(data)})
@@ -189,14 +194,16 @@ export async function renderFavorite (data) {
     error({ text: 'Films in your favorite not found', delay: 700 });
     return;
   };
-  document.querySelector('.page-result').innerHTML = '';
   observeRef.classList.add('observe--hidden');
   galleryRef.innerHTML = favTmpl(addActiveBtn(result));
 };
 export async function renderPlaylist (data) {
+  document.querySelector('.page-result').innerHTML = '';
+  if (document.querySelector('.title')) {
+    document.querySelector('.title').remove();
+  }
   let results = [];
   let result = {};
-  document.querySelector('.title').remove();
   document.querySelector('.search-result').insertAdjacentHTML("afterbegin", `<h2 class="title">Your playlist</h2>`);
   for (let i of data){
     await pageRequest(i).then((data) => {results.push(data)})
@@ -207,7 +214,6 @@ export async function renderPlaylist (data) {
     error({ text: 'Films in your playlist not found', delay: 700 });
     return;
   };
-  document.querySelector('.page-result').innerHTML = '';
   observeRef.classList.add('observe--hidden');
   galleryRef.innerHTML = favTmpl(addActiveBtn(result));
 };

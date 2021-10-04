@@ -1,10 +1,10 @@
 .main__arrow {
-  top: 30px;
-  left: 20px;
+  bottom: 30px;
+  right: 20px;
   position: fixed;
   width: 50px;
   height: 50px;
-  // background-color: $blue;
+  background-color: var(--aside-bg);
   border-radius: 50%;
   z-index: 5;
   display: flex;
@@ -12,8 +12,8 @@
   align-items: center;
   cursor: pointer;
   transition: 200ms linear;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
+  padding-right: 2px;
+  box-shadow: 0px 1px 1px rgba(102, 62, 62, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
   &--hidden {
     opacity: 0;
     visibility: hidden;
@@ -21,14 +21,16 @@
     transform: scale(0);
   }
   &:hover {
-    // background-color: $grey;
-    & svg {
-      // fill: $blue;
+    background-color: var(--headline-white);
+    & i {
+      color: var(--aside-bg);
     }
   }
-  svg {
+  i {
+    text-align: center;
+    font-weight: 800;
+    font-size: 35px;
     transition: 200ms linear;
-    transform: rotate(180deg);
-    // fill: $white;
+    color: var(--headline-white);
   }
 }

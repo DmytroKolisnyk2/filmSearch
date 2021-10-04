@@ -17,3 +17,9 @@ body {
   flex-direction: column;
   flex-grow: 1;
 }
+
+.title {
+  text-align: center;
+  @extend %roboto-slab;
+  margin-bottom: 20px;
+}

@@ -95,7 +95,10 @@ export const searchApp = {
 }
 export const renderPlayingNow = () => {
   document.querySelector('.page-result').innerHTML = '';
-
+  if (document.querySelector('.title')) {
+    document.querySelector('.title').remove()
+  }
+  document.querySelector('.search-result').insertAdjacentHTML("afterbegin", `<h2 class="title">Playing now</h2>`);
   playingNowRequest().then(({ data }) => {
     galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
     if (data.results.length === 0) {
@@ -132,7 +135,6 @@ const addActiveBtn = (data) => {
   return data
 };
 const addActiveBtnPage = (data) => {
-
   const likeList = JSON.parse(localStorage.getItem('like-list'));
   const watchLaterList = JSON.parse(localStorage.getItem('watch-later'));
   data.liked = likeList.includes(JSON.stringify(data.data.id));
@@ -151,7 +153,7 @@ export const renderPage = (id) => {
   observeRef.classList.add('observe--hidden');
   pageRequest(id).then((data) => {
     console.log(data);
-    document.querySelector('.search-result__card-container').innerHTML = '';
+    galleryRef.innerHTML = '';
     document.querySelector('.page-result').innerHTML = pageTmpl(addActiveBtnPage(data));
     document.querySelector('.page__menu').addEventListener('click', changeLikes);
     document.querySelector('.page__menu').addEventListener('click', changeWatchLaterList);
@@ -163,6 +165,8 @@ export const renderPage = (id) => {
 export const renderUpcoming = () => {
   document.querySelector('.page-result').innerHTML = "";
   upcomingRequest().then(({ data }) => {
+    document.querySelector('.title').remove()
+    document.querySelector('.search-result').insertAdjacentHTML("afterbegin", `<h2 class="title">Coming soon</h2>`);
     galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
     if (data.results.length === 0) {
       error({ text: 'Popular films not found', delay: 700 });
@@ -176,22 +180,36 @@ export const renderUpcoming = () => {
 export async function renderFavorite (data) {
   let results = [];
   let result = {};
+  document.querySelector('.title').remove()
+  document.querySelector('.search-result').insertAdjacentHTML("afterbegin", `<h2 class="title">Favorite movies</h2>`);
   for (let i of data){
     await pageRequest(i).then((data) => {results.push(data)})
       .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
   }
   result.results = results;
+  if (result.results.length === 0) {
+    error({ text: 'Films in your favorite not found', delay: 700 });
+    return;
+  };
+  document.querySelector('.page-result').innerHTML = '';
   observeRef.classList.add('observe--hidden');
   galleryRef.innerHTML = favTmpl(addActiveBtn(result));
 };
 export async function renderPlaylist (data) {
   let results = [];
   let result = {};
+  document.querySelector('.title').remove()
+  document.querySelector('.search-result').insertAdjacentHTML("afterbegin", `<h2 class="title">Your playlist</h2>`);
   for (let i of data){
     await pageRequest(i).then((data) => {results.push(data)})
       .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
   }
   result.results = results;
+  if (result.results.length === 0) {
+    error({ text: 'Films in your playlist not found', delay: 700 });
+    return;
+  };
+  document.querySelector('.page-result').innerHTML = '';
   observeRef.classList.add('observe--hidden');
   galleryRef.innerHTML = favTmpl(addActiveBtn(result));
 };

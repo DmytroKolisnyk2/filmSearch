@@ -5,7 +5,7 @@
 			<div class="background__img-wrapper">
 				{{#if data.poster_path}}
 				<img width="350" height="400" class="background__img"
-					src="https://image.tmdb.org/t/p/w500{{data.poster_path}}" />
+					src="https://image.tmdb.org/t/p/original{{data.poster_path}}" />
 				{{/if}}
 				{{#unless data.poster_path}}
 				<img width="350" height="400" alt="no-poster" class="background__img" src="./images/no-poster.png" />

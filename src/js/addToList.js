@@ -55,7 +55,6 @@ export const changeWatchLaterList = event => {
   btn.classList.toggle('card-menu__btn--later');
   const ID = btn.parentNode.dataset.id;
   const likeList = JSON.parse(localStorage.getItem('watch-later'));
-  console.log(btn.dataset.inList);
   if (btn.classList.contains('card-menu__btn--later')) {
     addToWatchLater(likeList, ID);
   } else {

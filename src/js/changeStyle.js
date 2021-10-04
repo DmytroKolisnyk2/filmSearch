@@ -74,7 +74,6 @@ export const themeStyles = {
 };
 
 export const changeTheme = theme => {
-  console.log(themeStyles[theme]);
   localStorage.setItem('theme', theme);
   // themeStyles.theme
   for (const elem in themeStyles[theme]) {

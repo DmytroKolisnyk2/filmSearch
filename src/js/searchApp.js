@@ -135,7 +135,6 @@ export const renderPage = id => {
         observeRef.classList.add('observe--hidden');
         document.querySelector('.info__slider').addEventListener('click', event => {
           let target = event.target;
-          console.log(target.dataset.id);
           if (!target.dataset.id) return;
           renderPage(target.dataset.id);
         });
@@ -283,8 +282,6 @@ export async function renderPlaylist(data) {
   result.results = results;
   observeRef.classList.add('observe--hidden');
   galleryRef.innerHTML = favTmpl(addActiveBtnWatchLater(result));
-  // console.log(result.results[0].liked);
-  console.log(result);
 
   addTippy();
   if (result.results.length === 0) {

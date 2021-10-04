@@ -114,6 +114,10 @@ export const searchApp = {
 
 export const renderPage = id => {
   try {
+    document.querySelector('.page-result').innerHTML = '';
+    if (document.querySelector('.title')) {
+      document.querySelector('.title').remove();
+    }
     showLoader();
     (async () => {
       const page = await pageRequest(id).then(data => data);
@@ -175,7 +179,13 @@ export const renderPopular = () => {
 
 export const renderPlayingNow = () => {
   showLoader();
-
+  document.querySelector('.page-result').innerHTML = '';
+  if (document.querySelector('.title')) {
+    document.querySelector('.title').remove();
+  }
+  document
+    .querySelector('.search-result')
+    .insertAdjacentHTML('afterbegin', `<h2 class="title">Playing now</h2>`);
   playingNowRequest()
     .then(({ data }) => {
       galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
@@ -191,9 +201,13 @@ export const renderPlayingNow = () => {
 
 export const renderUpcoming = () => {
   showLoader();
-
+  document.querySelector('.page-result').innerHTML = "";
+  if (document.querySelector('.title')) {
+    document.querySelector('.title').remove();
+  }
   upcomingRequest()
     .then(({ data }) => {
+      document.querySelector('.search-result').insertAdjacentHTML("afterbegin", `<h2 class="title">Coming soon</h2>`);
       galleryRef.innerHTML = cardTmpl(addActiveBtn(data));
       observeRef.classList.add('observe--hidden');
       addTippy();
@@ -223,6 +237,13 @@ const showLoader = () => {
 export async function renderFavorite(data) {
   let results = [];
   let result = {};
+  document.querySelector('.page-result').innerHTML = '';
+  if (document.querySelector('.title')) {
+    document.querySelector('.title').remove();
+  }
+  document
+    .querySelector('.search-result')
+    .insertAdjacentHTML('afterbegin', `<h2 class="title">Favorite movies</h2>`);
   showLoader();
   for (let i of data) {
     await pageRequest(i)
@@ -235,11 +256,22 @@ export async function renderFavorite(data) {
   observeRef.classList.add('observe--hidden');
   galleryRef.innerHTML = favTmpl(addActiveBtnFavorite(result));
   addTippy();
+  if (result.results.length === 0) {
+    error({ text: 'Films in your favorite not found', delay: 700 });
+    return;
+  };
 }
 
 export async function renderPlaylist(data) {
+  document.querySelector('.page-result').innerHTML = '';
+  if (document.querySelector('.title')) {
+    document.querySelector('.title').remove();
+  }
   let results = [];
   let result = {};
+  document
+    .querySelector('.search-result')
+    .insertAdjacentHTML('afterbegin', `<h2 class="title">Your playlist</h2>`);
   showLoader();
   for (let i of data) {
     await pageRequest(i)
@@ -251,10 +283,14 @@ export async function renderPlaylist(data) {
   result.results = results;
   observeRef.classList.add('observe--hidden');
   galleryRef.innerHTML = favTmpl(addActiveBtnWatchLater(result));
-  console.log(result.results[0].liked);
+  // console.log(result.results[0].liked);
   console.log(result);
 
   addTippy();
+  if (result.results.length === 0) {
+    error({ text: 'Films in your playlist not found', delay: 700 });
+    return;
+  };
 }
 
 const observer = new IntersectionObserver(searchApp.updatePhotos.bind(searchApp, observeRef));

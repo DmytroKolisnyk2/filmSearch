@@ -19,6 +19,12 @@ body {
   flex-grow: 1;
   background-color:var(--main-color);
 }
+
 main,footer,html,body,header{
   scroll-behavior: smooth; 
+
+.title {
+  text-align: center;
+  @extend %roboto-slab;
+  margin-bottom: 20px;
 }

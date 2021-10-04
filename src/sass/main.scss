@@ -18,3 +18,8 @@ body {
   flex-grow: 1;
   background-color:var(--main-color);
 }
+.title {
+  text-align: center;
+  @extend %roboto-slab;
+  margin-bottom: 20px;
+}

@@ -5,6 +5,7 @@
 @import "./searchResult";
 @import "./movie";
 @import "./settings.scss";
+@import "./startArrow.scss";
 
 body {
   background-color: rgb(238, 238, 238);
@@ -18,6 +19,10 @@ body {
   flex-grow: 1;
   background-color:var(--main-color);
 }
+
+main,footer,html,body,header{
+  scroll-behavior: smooth; 
+
 .title {
   text-align: center;
   @extend %roboto-slab;

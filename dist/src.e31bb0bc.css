@@ -900,6 +900,32 @@ h6 {
   padding: 0.6em 0.8em 0.5em 1.4em;
 }
 
+.main__arrow {
+  top: 30px;
+  left: 20px;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 200ms linear;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+.main__arrow--hidden {
+  opacity: 0;
+  visibility: hidden;
+  position: none;
+  transform: scale(0);
+}
+.main__arrow svg {
+  transition: 200ms linear;
+  transform: rotate(180deg);
+}
+
 body {
   background-color: #eeeeee;
   display: flex;

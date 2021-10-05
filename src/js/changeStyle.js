@@ -47,6 +47,18 @@ export const themeStyles = {
     '--text-color-dark': '#0ff',
     '--text-color': '#0cc',
   },
+  'Uran theme': {
+    '--headline-white': '#fff',
+    '--headline-bg': '#222',
+    '--aside-bg': '#000',
+    '--text-grey': '#0f0',
+    '--rating-color': '#0f0',
+    '--main-color': '#151515',
+    '--gear-inner': '#000',
+    '--gear-bg': '#fff',
+    '--text-color-dark': '#0f0',
+    '--text-color': '#0c0',
+  },
   'Casual theme': {
     '--headline-white': '#5c4f55',
     '--aside-bg': '#F9F8D4',

@@ -234,6 +234,10 @@ const showLoader = () => {
 };
 
 export async function renderFavorite(data) {
+  if (data.length === 0) {
+    error({ text: 'Liked films not found', delay: 700 });
+    return;
+  };
   let results = [];
   let result = {};
   document.querySelector('.page-result').innerHTML = '';
@@ -255,13 +259,14 @@ export async function renderFavorite(data) {
   observeRef.classList.add('observe--hidden');
   galleryRef.innerHTML = favTmpl(addActiveBtnFavorite(result));
   addTippy();
-  if (result.results.length === 0) {
-    error({ text: 'Films in your favorite not found', delay: 700 });
-    return;
-  };
+  
 }
 
 export async function renderPlaylist(data) {
+  if (data.length === 0) {
+    error({ text: 'Films in your playlist not found', delay: 700 });
+    return;
+  };
   document.querySelector('.page-result').innerHTML = '';
   if (document.querySelector('.title')) {
     document.querySelector('.title').remove();
@@ -280,14 +285,12 @@ export async function renderPlaylist(data) {
       .catch(() => error({ text: 'Oops something went wrong', delay: 1000 }));
   }
   result.results = results;
+  
   observeRef.classList.add('observe--hidden');
   galleryRef.innerHTML = favTmpl(addActiveBtnWatchLater(result));
 
   addTippy();
-  if (result.results.length === 0) {
-    error({ text: 'Films in your playlist not found', delay: 700 });
-    return;
-  };
+  
 }
 
 const observer = new IntersectionObserver(searchApp.updatePhotos.bind(searchApp, observeRef));

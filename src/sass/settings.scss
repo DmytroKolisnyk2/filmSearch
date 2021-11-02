@@ -53,6 +53,17 @@
   margin-bottom: 18px;
   color: var(--headline-white);
 }
+.ss-list,.ss-search,.ss-option-selected{
+  background-color:  var(--headline-white) !important;
+  border-color: var(--headline-white) !important;
+
+}
+
+.ss-single-selected{
+  min-height: 100% !important; 
+  background-color:  var(--headline-white) !important;
+  border-color: var(--headline-white) !important;
+}
 .settings__select {
   &--region {
     width: 80%;
@@ -60,6 +71,7 @@
       width: 92%;
     }
   }
+  height: 40px;
   cursor: pointer;
   transition: $linear-small;
   width: 92%;
@@ -68,40 +80,41 @@
   font-size: 16px;
   @extend %roboto-slab;
   font-weight: 600;
+  // height: 0px;
   color: var(--aside-bg);
-  line-height: 1.3;
-  padding: 0.6em 1.4em 0.5em 0.8em;
+  // line-height: 1.3;
+  // padding: 0.6em 1.4em 0.5em 0.8em;
   box-sizing: border-box;
-  border: 1px solid #aaa;
+  // border: 1px solid #aaa;
   box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
   border-radius: 0.5em;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background-color: #fff;
-  background-image: url("../images/arrow.png"),
-    linear-gradient(to bottom, var(--headline-white) 0%, var(--headline-white) 100%);
-  background-repeat: no-repeat, repeat;
-  background-position: right 0.7em top 55%, 0 0;
-  background-size: 1.07em auto, 100%;
+  background-color:  var(--headline-white);
+  // background-image: url("../images/arrow.png"),
+  //   linear-gradient(to bottom, var(--headline-white) 0%, var(--headline-white) 100%);
+  // background-repeat: no-repeat, repeat;
+  // background-position: right 0.7em top 55%, 0 0;
+  // background-size: 1.07em auto, 100%;
 }
-.settings__select::-ms-expand {
-  display: none;
-}
-.settings__select:hover {
-  border-color: #888;
-}
-.settings__select:focus {
-  outline: none;
-}
+// .settings__select::-ms-expand {
+//   display: none;
+// }
+// .settings__select:hover {
+//   border-color: #888;
+// }
+// .settings__select:focus {
+//   outline: none;
+// }
 
-.settings__select option {
-  font-weight: normal;
-  @extend %roboto-slab;
-}
-*[dir="rtl"] .settings__select,
-:root:lang(ar) .settings__select,
-:root:lang(iw) .settings__select {
-  background-position: left 0.7em top 50%, 0 0;
-  padding: 0.6em 0.8em 0.5em 1.4em;
-}
+// .settings__select option {
+//   font-weight: normal;
+//   @extend %roboto-slab;
+// }
+// *[dir="rtl"] .settings__select,
+// :root:lang(ar) .settings__select,
+// :root:lang(iw) .settings__select {
+//   background-position: left 0.7em top 50%, 0 0;
+//   padding: 0.6em 0.8em 0.5em 1.4em;
+// }

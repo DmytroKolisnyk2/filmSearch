@@ -38,6 +38,9 @@ export const searchApp = {
   page: 1,
 
   searchPhoto() {
+    if (document.querySelector('.title')) {
+      document.querySelector('.title').remove();
+    }
     if (inputRef.value.length === 0) return;
     document.querySelector('.page-result').innerHTML = '';
     galleryRef.innerHtml = '';

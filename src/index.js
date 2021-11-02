@@ -9,6 +9,7 @@ import { closeBar } from './js/openBar';
 import { changeAxiosLanguage, changeAxiosRegion } from './js/searchFilm';
 import { changeTheme } from './js/changeStyle';
 
+
 localStorage.setItem('like-list', localStorage.getItem('like-list') || JSON.stringify([]));
 localStorage.setItem('watch-later', localStorage.getItem('watch-later') || JSON.stringify([]));
 localStorage.setItem('region', localStorage.getItem('region') || 'US');
